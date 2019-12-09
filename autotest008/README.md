@@ -33,7 +33,7 @@ The default script will launch the clients it needs on the server you describe i
 
 ## Outputs
 
-The outputs of `puppeteer01.js` will be displayed in `JSON` files.
+The outputs of `puppeteer01.js` is displayed in `JSON` files.
 
 ## Parsing the results
 
@@ -41,4 +41,4 @@ The outputs of `puppeteer01.js` will be displayed in `JSON` files.
 
 ## Graphs
 
-`metrics01.tsv` is used to draw graphs in google spreadsheets:
+`metrics01.tsv` is used to draw graphs in google spreadsheets.

@@ -45,9 +45,13 @@ done
 basePath=data/${date}_${n}
 
 mkdir -p $basePath
-
 TIMELIMIT_SECONDS=$(($TIMELIMIT_MINUTES * 60))
+
 timeout $TIMELIMIT_SECONDS node puppeteer01.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/puppeteer01.out &
+pids+=($!)
+timeout $TIMELIMIT_SECONDS node puppeteer02.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/puppeteer02.out &
+pids+=($!)
+timeout $TIMELIMIT_SECONDS node puppeteer03.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/puppeteer03.out &
 pids+=($!)
 
 
@@ -67,6 +71,7 @@ trap - EXIT
 if [ $? -eq 0 ]
     then
     echo "The Test was ran successfully !"
+    node parser.js $basePath &> $basePath/parser.out &
     exit 0
     else
     echo "There was an error while running your Test !" >&2

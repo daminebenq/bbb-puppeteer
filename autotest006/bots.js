@@ -40,7 +40,6 @@ async function bots() {
           console.log(`${i}: ${msg.args[i]}`);
     });
     try{
-
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=Streamer_${bot}&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000);
         await page.waitForSelector('[aria-describedby^="modalDismissDescription"]');
