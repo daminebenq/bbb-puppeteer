@@ -1,0 +1,32 @@
+[Mon Dec 09 2019 13:31:11 GMT-0300 (-03)] [ 'Starting Time' ]
+Chrome: using SDP PlanB
+[13:31:13:0908] %ccolor: Purple%c:  WARN: %ccolor: DimGray %cclientLogger color: SteelBlue Call to userChangedLocalSettings failed because Meteor is not connected color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1130098
+[13:31:14:0575] %ccolor: GoldenRod%c: DEBUG: %ccolor: DimGray %cclientLogger color: SteelBlue Initial connection status change. status: connecting, connected: false color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1015497
+[13:31:15:0252] %ccolor: GoldenRod%c: DEBUG: %ccolor: DimGray %cclientLogger color: SteelBlue Initial connection status change. status: connected, connected: true color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1015497
+[13:31:15:0255] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue Connection to Meteor took 0.68s color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1015668
+[13:31:15:0438] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue Log information about the client color: DimGray; font-style: italic; font-size: 0.9em n (https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1016839)
+[13:31:15:0441] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue User successfully went through main.joinRouteHandler color: DimGray; font-style: italic; font-size: 0.9em fetchToken (https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1017706)
+[13:31:15:0447] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue re-send validateAuthToken for delayed authentication color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1144076
+[13:31:15:0635] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue re-send validateAuthToken for delayed authentication color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1144076
+[13:31:15:0645] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue re-send validateAuthToken for delayed authentication color: DimGray; font-style: italic; font-size: 0.9em https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1144076
+[13:31:16:0380] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue Subscriptions are ready color: DimGray; font-style: italic; font-size: 0.9em Z.componentDidUpdate (https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:1182580)
+[13:31:16:0708] %ccolor: DarkTurquoise%c:  INFO: %ccolor: DimGray %cclientLogger color: SteelBlue Client loaded successfully color: DimGray; font-style: italic; font-size: 0.9em q.componentDidMount (https://test.bigbluebutton.org/html5client/ace38bacde36f50cac57abce247d4729b0ba16b2.js?meteor_js_resource=true:125:965443)
+{ error: Error: Evaluation failed: ReferenceError: FPS is not defined
+    at animate (__puppeteer_evaluation_script__:21:45)
+    at startAnimating (__puppeteer_evaluation_script__:11:21)
+    at __puppeteer_evaluation_script__:5:17
+    at ExecutionContext._evaluateInternal (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/ExecutionContext.js:122:13)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+  -- ASYNC --
+    at ExecutionContext.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:111:15)
+    at DOMWorld.evaluate (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/DOMWorld.js:112:20)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+  -- ASYNC --
+    at Frame.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:111:15)
+    at Page.evaluate (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Page.js:833:43)
+    at Page.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at puppeteer1 (/home/imdt/bbb-puppeteer/autotest008/puppeteer01.js:51:32)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7) }
