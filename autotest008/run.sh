@@ -47,7 +47,9 @@ basePath=data/${date}_${n}
 mkdir -p $basePath
 
 TIMELIMIT_SECONDS=$(($TIMELIMIT_MINUTES * 60))
-timeout $TIMELIMIT_SECONDS node puppeteer01.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/puppeteer01.out &
+TIMELIMIT_UPPER=$(($TIMELIMIT_MINUTES * 60 * 5))
+
+timeout $TIMELIMIT_UPPER node puppeteer01.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/puppeteer01.out &
 pids+=($!)
 
 

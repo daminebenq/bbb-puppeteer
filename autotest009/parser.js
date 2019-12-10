@@ -4,22 +4,28 @@ var path = require('path');
 const moment = require('moment');
 const data = {};
 const basePath = process.argv[2]
-var metricsMsgs = path.join(__dirname,`./${basePath}/metricsMsgs.json`)
-var metricsProber = path.join(__dirname,`./${basePath}/metricsProber.json`)
-var proberTSV = path.join(__dirname,`./${basePath}/proberTSV.tsv`)
-var msgsTSV = path.join(__dirname,`./${basePath}/msgsTSV.tsv`)
+var share = path.join(__dirname,`./${basePath}/share.json`)
+var watch = path.join(__dirname,`./${basePath}/watch.json`)
+var probe = path.join(__dirname,`./${basePath}/probe.json`)
+var shareTSV = path.join(__dirname,`./${basePath}/shareTSV.tsv`)
+var watchTSV = path.join(__dirname,`./${basePath}/watchTSV.tsv`)
+var probeTSV = path.join(__dirname,`./${basePath}/probeTSV.tsv`)
 
-const parsedMsgsMetrics = readline.createInterface({
-    input: fs.createReadStream(metricsMsgs),
+const shareMetrics = readline.createInterface({
+    input: fs.createReadStream(share),
 });
-const parsedProberMetrics = readline.createInterface({
-    input: fs.createReadStream(metricsProber),
+const watchMetrics = readline.createInterface({
+    input: fs.createReadStream(watch),
+});
+const probeMetrics = readline.createInterface({
+    input: fs.createReadStream(probe),
 });
 
-fs.writeFileSync(proberTSV, 'secondsToInitiallyLoadMessages\n','utf-8')
-fs.writeFileSync(msgsTSV, 'dateObj\tdomDurationObj\ttotalMsgsMiniMongoObj\ttotalMsgsObj\tNodes\tJSHeapUsedSize\n','utf-8')
+fs.writeFileSync(shareTSV, 'secondsToInitiallyLoadMessages\n','utf-8')
+fs.writeFileSync(watchTSV, 'secondsToInitiallyLoadMessages\n','utf-8')
+fs.writeFileSync(probeTSV, 'dateObj\tdomDurationObj\ttotalMsgsMiniMongoObj\ttotalMsgsObj\tNodes\tJSHeapUsedSize\n','utf-8')
 
-parsedProberMetrics.on('line', (line)=>{
+shareMetrics.on('line', (line)=>{
     try {
         const {domDurationObj} = JSON.parse(line)
         let formattedLine = `${domDurationObj.toFixed(3).toString().replace(".", ",")}\t`;
@@ -31,18 +37,24 @@ parsedProberMetrics.on('line', (line)=>{
     }
 })
 
-parsedMsgsMetrics.on('line', (line)=>{
+watchMetrics.on('line', (line)=>{
     try {
-        const {dateObj,domDurationObj,totalMsgsMiniMongoObj,totalMsgsObj, metricObj:{Nodes, JSHeapUsedSize}} = JSON.parse(line)
-        let formattedDate = new Date(dateObj);
-        const intervalBox = Math.floor(formattedDate.getSeconds() / 5)*5;
-        formattedDate.setSeconds(intervalBox);
-        formattedDate = moment(formattedDate).format('DD/MM/YYYY hh:mm:ss');
-        if (!data[formattedDate]) {
-        data[formattedDate] = {};
-        }
+        const {domDurationObj} = JSON.parse(line)
+        let formattedLine = `${domDurationObj.toFixed(3).toString().replace(".", ",")}\t`;
+        fs.appendFileSync(proberTSV, formattedLine+'\n', 'utf-8')
+    }
+    catch(error){
+        const time = new Date()
+        console.log({error}, ' at => ',time)
+    }
+})
 
-        let formattedLine = `${dateObj}\t${domDurationObj.toFixed(3).toString().replace(".", ",")}\t${totalMsgsMiniMongoObj}\t${totalMsgsObj}\t${Nodes}\t${JSHeapUsedSize}`;
+probeMetrics.on('line', (line)=>{
+    try {
+        const {loadTime, metricObj:{Nodes, JSHeapUsedSize}} = JSON.parse(line)
+
+
+        let formattedLine = `${loadTime.toFixed(3).toString().replace(".", ",")}\t${Nodes}\t${JSHeapUsedSize}`;
         fs.appendFileSync(msgsTSV, formattedLine+'\n', 'utf-8')
     }
     catch(error){

@@ -35,40 +35,37 @@ async function puppeteer1() {
         await page.click('[aria-describedby^="modalDismissDescription"]');
         for (var i = TIMELIMIT_MILLISECONDS; i >= 0; i--) {
             // // Show FPS Panel in the browser
-            // function(){
-            //     var script=document.createElement('script');
-            //     script.onload=function(){
-            //         var stats=new Stats();
-            //         document.body.appendChild(stats.dom);
-            //         requestAnimationFrame(function loop(){
-            //             stats.update();
-            //             requestAnimationFrame(loop)});
-            //         };
-            //         script.src='//mrdoob.github.io/stats.js/build/stats.min.js';
-            //         document.head.appendChild(script);
-            //     }
-            //   )
+            await page.evaluate(()=>{
+                var script=await document.createElement('script');
+                script.onload=await function(){
+                    var stats=new Stats();
+                    document.body.appendChild(stats.dom);
+                    requestAnimationFrame(function loop(){
+                        stats.update();
+                        requestAnimationFrame(loop)});
+                    };
+                    script.src='//mrdoob.github.io/stats.js/build/stats.min.js';
+                    await document.head.appendChild(script);
+              })
+            
             let x = await page.evaluate(()=>{
                 var frameCount = 0;
                 var fps, fpsInterval, startTime, now, then, elapsed;
-                
-                startAnimating(60);
-                
+                startAnimating(60)
                 function startAnimating(fps) {
                     fpsInterval = 1000 / fps;
                     then = Date.now();
                     startTime = then;
-                    animate()
+                    animate() 
                 }
                 function animate() {
                     requestAnimationFrame(animate);
                     now = Date.now();
                     elapsed = now - then;
-                    
                     then = now - (elapsed % fpsInterval);
                     var sinceStart = now - startTime;
                     var currentFps = Math.round(1000 / (sinceStart / ++frameCount) * 100) / 100;
-                    console.log(currentFps," FPS")      
+                    return setInterval(()=>{console.log(currentFps," FPS")},3000)    
                 }
             })
             
@@ -86,9 +83,9 @@ async function puppeteer1() {
                 };
             });
             await page.waitFor(60000)
-            log(['End Time'])
-            process.exit(0)
-        }  
+        }
+        log(['End Time'])
+        process.exit(0)
     } 
     catch(error){
         console.log({error})
