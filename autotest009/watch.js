@@ -6,6 +6,7 @@ var fs = require("fs");
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 const metric = {};
+const moment = require('moment');
 
 var metricsJSON = path.join(__dirname,`./${basePath}/watch.json`)
 var fs = require("fs");
@@ -44,6 +45,8 @@ async function watch() {
             }
             const metrics = await page.metrics();
             const performance = await page.evaluate(() => performance.toJSON())
+            const date = new Date()
+            metric['dateObj'] = moment(date).format('DD/MM/YYYY hh:mm:ss');
             metric['metricsObj'] = metrics;
             metric['performancesObj'] = performance;
 

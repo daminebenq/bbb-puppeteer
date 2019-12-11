@@ -21,15 +21,15 @@ const probeMetrics = readline.createInterface({
     input: fs.createReadStream(probe),
 });
 
-fs.writeFileSync(shareTSV, 'secondsToInitiallyLoadMessages\n','utf-8')
-fs.writeFileSync(watchTSV, 'secondsToInitiallyLoadMessages\n','utf-8')
-fs.writeFileSync(probeTSV, 'dateObj\tdomDurationObj\ttotalMsgsMiniMongoObj\ttotalMsgsObj\tNodes\tJSHeapUsedSize\n','utf-8')
+fs.writeFileSync(shareTSV, 'dateObj\tloadTime\tNodes\tJSHeapUsedSize\n','utf-8')
+fs.writeFileSync(watchTSV, 'dateObj\tNodes\tJSHeapUsedSize\n','utf-8')
+fs.writeFileSync(probeTSV, 'dateObj\tloadTime\tNodes\tJSHeapUsedSize\n','utf-8')
 
 shareMetrics.on('line', (line)=>{
     try {
-        const {domDurationObj} = JSON.parse(line)
-        let formattedLine = `${domDurationObj.toFixed(3).toString().replace(".", ",")}\t`;
-        fs.appendFileSync(proberTSV, formattedLine+'\n', 'utf-8')
+        const {dateObj,loadTime, metricsObj:{Nodes, JSHeapUsedSize}} = JSON.parse(line)
+        let formattedLine = `${dateObj}\t${loadTime.toFixed(3).toString().replace(".", ",")}\t${Nodes}\t${JSHeapUsedSize}`;
+        fs.appendFileSync(shareTSV, formattedLine+'\n', 'utf-8')
     }
     catch(error){
         const time = new Date()
@@ -39,9 +39,9 @@ shareMetrics.on('line', (line)=>{
 
 watchMetrics.on('line', (line)=>{
     try {
-        const {domDurationObj} = JSON.parse(line)
-        let formattedLine = `${domDurationObj.toFixed(3).toString().replace(".", ",")}\t`;
-        fs.appendFileSync(proberTSV, formattedLine+'\n', 'utf-8')
+        const {dateObj,metricsObj:{Nodes, JSHeapUsedSize}} = JSON.parse(line)
+        let formattedLine = `${dateObj}\t${Nodes}\t${JSHeapUsedSize}`;
+        fs.appendFileSync(watchTSV, formattedLine+'\n', 'utf-8')
     }
     catch(error){
         const time = new Date()
@@ -51,11 +51,9 @@ watchMetrics.on('line', (line)=>{
 
 probeMetrics.on('line', (line)=>{
     try {
-        const {loadTime, metricObj:{Nodes, JSHeapUsedSize}} = JSON.parse(line)
-
-
-        let formattedLine = `${loadTime.toFixed(3).toString().replace(".", ",")}\t${Nodes}\t${JSHeapUsedSize}`;
-        fs.appendFileSync(msgsTSV, formattedLine+'\n', 'utf-8')
+        const {dateObj,loadTime, metricsObj:{Nodes, JSHeapUsedSize}} = JSON.parse(line)
+        let formattedLine = `${dateObj}\t${loadTime.toFixed(3).toString().replace(".", ",")}\t${Nodes}\t${JSHeapUsedSize}`;
+        fs.appendFileSync(probeTSV, formattedLine+'\n', 'utf-8')
     }
     catch(error){
         const time = new Date()

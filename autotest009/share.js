@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const URL = process.argv[2]
 const basePath = process.argv[3]
 var path = require('path'); 
@@ -6,6 +6,7 @@ var fs = require("fs");
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 const metric = {};
+const moment = require('moment');
 
 var metricsJSON = path.join(__dirname,`./${basePath}/share.json`)
 var fs = require("fs");
@@ -19,6 +20,7 @@ var log = function () {
 async function share() {
     const browser = await puppeteer.launch({
         headless: false,
+        executablePath: '/usr/bin/google-chrome',
 	    args: ['--no-sandbox']
     });
     // const browser = await puppeteer.connect({
@@ -63,6 +65,8 @@ async function share() {
             await page.waitFor(5000)
             const metrics = await page.metrics();
             const performance = await page.evaluate(() => performance.toJSON())
+            const date = new Date()
+            metric['dateObj'] = moment(date).format('DD/MM/YYYY hh:mm:ss');
             metric['loadTime'] = loadTime;
             metric['metricsObj'] = metrics;
             metric['performancesObj'] = performance;
