@@ -80,10 +80,10 @@ function killprocs()
 trap killprocs EXIT 
 
 wait "${pids[@]}"
-
+exitcode=$?
 trap - EXIT
 
-if [ $? -eq 0 ]
+if [ $exitcode -eq 0 ]
     then
     echo "The Test was ran successfully !"
     node parser.js $basePath &> $basePath/parser.out &

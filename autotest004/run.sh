@@ -47,15 +47,15 @@ function killprocs()
 trap killprocs EXIT 
 
 wait "${pids[@]}"
-
+exitcode=$?
 trap - EXIT
 
-if [ $? -eq 0 ]
+if [ $exitcode -eq 0 ]
     then
     echo "The Test was ran successfully !"
     exit 0
     else
-    echo "There was an error while running your Test !" >&2
+    echo "There was an error while running your Test !"
     exit 1
 fi
 

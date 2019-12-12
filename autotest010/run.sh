@@ -46,15 +46,12 @@ basePath=data/${date}_${n}
 
 mkdir -p $basePath
 TIMELIMIT_SECONDS=$(($TIMELIMIT_MINUTES * 60))
-TIMELIMIT_UPPER=$(($TIMELIMIT_MINUTES * 60 * 5))
+TIMELIMIT_UPPER=$(($TIMELIMIT_MINUTES * 60 * 2))
 
 timeout $TIMELIMIT_UPPER node share.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/share.out &
 pids+=($!)
 timeout $TIMELIMIT_UPPER node watch.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/watch.out &
 pids+=($!)
-timeout $TIMELIMIT_UPPER node probe.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/probe.out &
-pids+=($!)
-
 
 function killprocs()
 {

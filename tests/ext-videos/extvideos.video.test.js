@@ -1,9 +1,3 @@
-// File name: External Video Player
-// Test Description:
-//      1) Open and start external Video
-//      2) Stop external Video Sharing
-//
-
 const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 
@@ -40,7 +34,6 @@ externalVideos.init = puppeteer.launch({
             process.exit[1]
         }
 
-        browser.close();
     });
 });
 module.exports = externalVideos;
