@@ -58,7 +58,7 @@ async function share() {
             log([`Video URL Verification failed ! (miniMongoVidUrl=${VidUrlminiMongo}) != (vidUrlDom=${vidUrlDom})`])
             process.exit(1)
         }
-        await page.waitFor(TIMELIMIT_MILLISECONDS-8000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS-22000)
         log(['End Time'])
         process.exit(0)
     } catch (error) {

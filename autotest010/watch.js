@@ -45,8 +45,9 @@ async function watch() {
             return  url.externalVideoUrl
         })
 
-        const vidUrlDom = await page.evaluate( ()=>{
-            let url =  document.querySelector('div[class="videoPlayer--1MGUuy"] > div > iframe').getAttribute('src')
+        // Checking if DOM receives the same video as miniMongo
+        /* const vidUrlDom = await page.evaluate( ()=>{
+            let url =  document.querySelector('div[class="videoPlayer--1MGUuy"] > div > iframe[title="YouTube video player"]').getAttribute('src')
             return url
         });
         if (VidUrlminiMongo.includes('oplhZIiMmLs') && vidUrlDom.includes('oplhZIiMmLs')){
@@ -54,30 +55,9 @@ async function watch() {
         } else {
             log([`Video URL Verification failed ! (miniMongoVidUrl=${VidUrlminiMongo}) != (vidUrlDom=${vidUrlDom})`])
             process.exit(1)
-        }
+        } */
 
-        const externalVideoIframe = await page.evaluateHandle(()=>('[div[class="videoPlayer--1MGUuy"] > div > iframe]'));
-        const iframe = await externalVideoIframe.contentFrame();
-
-        const videoTimeFirstCheck = await iframe.evaluate(()=>{
-            let time = document.querySelector('[class="ytp-time-current"]');
-            return time.innerHTML
-        })
-
-        await page.waitFor(5000)
-        const videoTimeSecondCheck = await iframe.evaluate(()=>{
-            let time = document.querySelector('[class="ytp-time-current"]');
-            return time.innerHTML
-        })
-
-        if(videoTimeFirstCheck==videoTimeSecondCheck){
-            log(['Video Timing Check passed !'])
-        } else {
-            log(['Video Timing Check failed !'])
-            process.exit(1)
-        }
-
-        await page.waitFor(TIMELIMIT_MILLISECONDS-8000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS-34000)
         log(['End Time'])
         process.exit(0)
     } catch (error) {
