@@ -21,13 +21,13 @@ or also running:
 ```
 cd autotest007
 
-./run.sh
+./run.sh -u URL -b BOTS -d TIMELIMIT_MINUTES
 ```
 
 ~~~bash
 example: 
 
-./autotest007/run.sh https://bbb-website.com
+./autotest007/run.sh -u https://bbb-website.com -b BOTS -d TIMELIMIT_MINUTES
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
