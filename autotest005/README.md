@@ -26,6 +26,7 @@ or also running:
 
 ```
 cd autotest005
+
 ./run.sh
 ```
 
