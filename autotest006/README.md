@@ -14,20 +14,20 @@ This script generates the log files `puppeteer01.out` and `puppeteer02.out` and 
 
 ## Running
 
-To run, execute `./autotest006/run.sh *URL*`
+To run, execute `./autotest006/run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES*`
 
 or also running: 
 
 ```
 cd autotest006
 
-./run.sh
+./run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES*
 ```
 
 ~~~bash
 example: 
 
-./autotest006/run.sh https://bbb-website.com
+./autotest006/run.sh -u https://bbb-website.com -b BOTS -d TIMELIMIT_MINUTES
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
