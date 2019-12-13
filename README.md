@@ -35,9 +35,5 @@ To run, execute `./test-XX.sh *URL*`
 
 The default script will launch the clients it needs on the server you describe in the URL.
 
-## ToDo
-
-- [ ] Add URL when running the command to be able to point on the Server you want to test.
-
 ## That's all
 ## Happy testing
