@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
@@ -10,10 +10,9 @@ var log = function () {
     );
     return console.log.apply(console, arguments);
 };
-async function read() {
+async function puppeteer2() {
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: '/usr/bin/google-chrome',
 	    args: ['--no-sandbox']
     });
     // const browser = await puppeteer.connect({
@@ -27,34 +26,22 @@ async function read() {
     ));
     try {
         await page.waitFor(3000)
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=ReadClosedCaptions&isModerator=false&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=ViewOnlyRecord&isModerator=false&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000)
-        await page.evaluate(()=>document.querySelector('[class="icon--2q1XXw icon-bbb-close"]').parentNode.click());
-        await page.waitFor(10000)
-
-        const closedCaptionsButton = await page.waitForSelector('[aria-label="Start viewing closed captions"]')
-        if(closedCaptionsButton){
-            log(['Closed Captions button is visible !'])
-        } else {
-            log(['Closed Captions button isn\'t visible !'])
-            process.exit(1)
-        }
-        await page.click('[aria-label="Start viewing closed captions"]')
-
-        await page.waitForSelector('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO"][aria-label="Start"]')
-        await page.click('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO"][aria-label="Start"]')
-        await page.waitForSelector('[class="captionsWrapper--17itqY"]');
-        const closedCaptionsArea = await page.evaluate(async()=>{
-            let getClosedCaptions = document.querySelector('div[aria-live="polite"]')
-            return getClosedCaptions.innerHTML
+        await page.evaluate(()=>document.querySelector('[aria-describedby^="modalDismissDescription"]').click());
+        await page.waitFor(15000);
+        await page.waitForSelector('[class="recordingStatusViewOnly--Z9UOXT"]');
+        const timerContainer = await page.evaluate(async ()=>{
+            let timer = await document.querySelector('[class="presentationTitle--Z1JrxcV"]').innerHTML
+            return timer
         })
-        if(closedCaptionsArea.length > 0){
-            log(['Closed Captions visibility check passed !'])
+        if(await timerContainer.length > 0){
+            log(['Session Recording visibility check passed !'])
         } else {
-            log(['Closed Captions visibility check failed !'])
+            log(['Session Recording visibility check failed !'])
             process.exit(1)
         }
-        await page.waitFor(TIMELIMIT_MILLISECONDS-16000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS-21000)
         log(['End Time'])
         process.exit(0)
     } catch (error) {
@@ -62,4 +49,4 @@ async function read() {
         process.exit(1)
     }
 }
-read()
+puppeteer2()
