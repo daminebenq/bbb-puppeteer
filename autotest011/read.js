@@ -31,30 +31,30 @@ async function read() {
         await page.waitFor(3000)
         await page.evaluate(()=>document.querySelector('[class="icon--2q1XXw icon-bbb-close"]').parentNode.click());
         await page.waitFor(10000)
-        const closedCaptionsButton = await page.evaluate(async ()=>{
-            let button = await document.querySelector('[aria-label="Start viewing closed captions"]')
-            return button
-        })
-        await page.waitForSelector('[aria-label="Start viewing closed captions"]')
+
+        const closedCaptionsButton = await page.waitForSelector('[aria-label="Start viewing closed captions"]')
         if(closedCaptionsButton){
             log(['Closed Captions button is visible !'])
         } else {
             log(['Closed Captions button isn\'t visible !'])
             process.exit(1)
         }
-        await closedCaptionsButton.click()
+        await page.click('[aria-label="Start viewing closed captions"]')
+
+        await page.waitForSelector('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO"][aria-label="Start"]')
+        await page.click('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO"][aria-label="Start"]')
         await page.waitForSelector('[class="captionsWrapper--17itqY"]');
         const closedCaptionsArea = await page.evaluate(async()=>{
             let getClosedCaptions = document.querySelector('div[aria-live="polite"]')
             return getClosedCaptions.innerHTML
         })
         if(closedCaptionsArea.length > 0){
-            log(['Closed Captions check passed !'])
+            log(['Closed Captions visibility check passed !'])
         } else {
-            log(['Closed Captions check failed !'])
+            log(['Closed Captions visibility check failed !'])
             process.exit(1)
         }
-        await page.waitFor(TIMELIMIT_MILLISECONDS)
+        await page.waitFor(TIMELIMIT_MILLISECONDS-16000)
         log(['End Time'])
         process.exit(0)
     } catch (error) {

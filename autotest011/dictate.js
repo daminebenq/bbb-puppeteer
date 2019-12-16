@@ -17,7 +17,7 @@ async function dictate() {
 	    args: [
             '--use-fake-ui-for-media-stream',
             '--use-fake-device-for-media-stream',
-            '--use-file-for-fake-audio-capture=read.mp3',
+            '--use-file-for-fake-audio-capture=read.wav',
             '--no-sandbox'
         ]
     });
@@ -34,16 +34,25 @@ async function dictate() {
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=DictateClosedCaptions&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000);
         await page.evaluate(()=>document.querySelector('[aria-label="Microphone"]').click());
+        await page.waitForSelector('[class="icon--2q1XXw icon-bbb-thumbs_up"]');
+        await page.click('[class="icon--2q1XXw icon-bbb-thumbs_up"]')
         await page.waitFor(3000);
 
         // Opening Closed Captions Menu
         await page.evaluate(()=> document.querySelector('i[class="itemIcon--Z207zn1 icon-bbb-closed_caption"]').parentNode.click());
         await page.evaluate(()=>document.querySelectorAll('[class="icon--2q1XXw icon-bbb-settings"]')[0].click());
 
+        await page.waitForSelector('[id="captionsLangSelector"]');
+        await page.waitForSelector('[aria-label="Start writing captions"]')
+        await page.click('[aria-label="Start writing captions"]');
+
+        await page.waitFor(10000)
+        await page.keyboard.type(`This is a test Text to show in Closed Captions !`, {delay: 100})
         // Starting Closed Captions
         await page.waitForSelector('[aria-label="Start dictation"]');
         await page.click('[aria-label="Start dictation"]');
         await page.waitFor(10000)
+        
         await page.waitForSelector('[class="button--Z2dosza md--Q7ug4 default--Z19H5du startBtn--21jNH1"]');
         await page.click('[class="button--Z2dosza md--Q7ug4 default--Z19H5du startBtn--21jNH1"]');
         await page.waitFor(10000);
@@ -51,7 +60,7 @@ async function dictate() {
         // Writing in Closed Captions
         await page.keyboard.type('This is a Closed Caption Text !',{delay: 100})
 
-        await page.waitFor(TIMELIMIT_MILLISECONDS)
+        await page.waitFor(TIMELIMIT_MILLISECONDS-36100)
         process.exit(0)
     } catch (error) {
         console.log({error});

@@ -15,6 +15,23 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 
 This script generates the log file `puppeteer01.out` and `puppeteer02.out` and the Metrics in `metrics01.json` and `metrics02.json` file.
 
+## IMPORTANT NOTE
+
+To run this test, you should make sure that you have the audio dictation mode enabled in your `settings.yml` file; So let's make sure you have it enabled first.
+
+Go to your BBB server terminal and execute this:
+`locate settings.yml`
+
+Once done, proceed editing the settings file:
+`nano /root/dev/bigbluebutton/bigbluebutton-html5/private/config/settings.yml`
+
+CTRL+W and try to find: `enableDictation`
+
+Set it to `true` save and exit the file, or if it's already set to `true` just CTRL+X.
+
+Next, restart your HTML5 service: `sudo systemctl restart bbb-html5`
+
+
 ## Running
 
 To run, execute `./autotest011/run.sh -u *URL* -d *TIMELIMIT_MINUTES*`
