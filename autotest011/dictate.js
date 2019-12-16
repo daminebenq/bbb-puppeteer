@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
@@ -12,8 +12,7 @@ var log = function () {
 };
 async function dictate() {
     const browser = await puppeteer.launch({
-        headless: false,
-        executablePath: '/usr/bin/google-chrome',
+        headless: true,
 	    args: [
             '--use-fake-ui-for-media-stream',
             '--use-fake-device-for-media-stream',
