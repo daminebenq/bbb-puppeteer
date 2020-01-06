@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const bots = process.argv[4]
 const TIMELIMIT_SECONDS = parseInt(process.argv[5])
-const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 10000;
+const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 async function bot() {
     const browser = await puppeteer.launch({
         headless: true,
