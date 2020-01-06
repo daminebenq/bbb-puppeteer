@@ -59,7 +59,7 @@ async function dictate() {
         // Writing in Closed Captions
         await page.keyboard.type('This is a Closed Caption Text !',{delay: 100})
 
-        await page.waitFor(TIMELIMIT_MILLISECONDS-36100)
+        await page.waitFor(TIMELIMIT_MILLISECONDS)
         process.exit(0)
     } catch (error) {
         console.log({error});

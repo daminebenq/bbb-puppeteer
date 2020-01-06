@@ -53,7 +53,7 @@ async function read() {
             log(['Closed Captions visibility check failed !'])
             process.exit(1)
         }
-        await page.waitFor(TIMELIMIT_MILLISECONDS-16000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS)
         log(['End Time'])
         process.exit(0)
     } catch (error) {
