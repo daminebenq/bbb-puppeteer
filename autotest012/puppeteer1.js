@@ -49,7 +49,7 @@ async function puppeteer1() {
         await page.waitFor('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO button--Z28qGla"]');
         await page.click('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO button--Z28qGla"]');
         
-        await page.waitFor(TIMELIMIT_MILLISECONDS-26000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS)
         log(['End Time'])
         process.exit(0)
     } catch (error) {

@@ -1,4 +1,4 @@
-# autotest011
+# autotest012
 
 ## About
 
@@ -11,7 +11,7 @@ This script Checks:
 
 This script runs 2 puppeteer instances and gets their Metrics, the Performance stats.
 
-This script generates execution folder with the name `Date_ExecutionNum` (example: `data/01-01-2019_1`) inside autotest011 folder.
+This script generates execution folder with the name `Date_ExecutionNum` (example: `data/01-01-2019_1`) inside autotest012 folder.
 
 This script generates the log file `puppeteer01.out` and `puppeteer02.out` and the Metrics in `metrics01.json` and `metrics02.json` file.
 
@@ -34,12 +34,12 @@ Next, restart your HTML5 service: `sudo systemctl restart bbb-html5`
 
 ## Running
 
-To run, execute `./autotest011/run.sh -u *URL* -d *TIMELIMIT_MINUTES*`
+To run, execute `./autotest012/run.sh -u *URL* -d *TIMELIMIT_MINUTES*`
 
 or also running: 
 
 ```
-cd autotest011
+cd autotest012
 
 ./run.sh -u *URL* -d *TIMELIMIT_MINUTES*
 ```
@@ -47,7 +47,7 @@ cd autotest011
 ~~~bash
 example: 
 
-./autotest011/run.sh -u https://bbb-website.com -d TIMELIMIT_MINUTES
+./autotest012/run.sh -u https://bbb-website.com -d TIMELIMIT_MINUTES
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.

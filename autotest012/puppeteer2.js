@@ -41,7 +41,7 @@ async function puppeteer2() {
             log(['Session Recording visibility check failed !'])
             process.exit(1)
         }
-        await page.waitFor(TIMELIMIT_MILLISECONDS-21000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS)
         log(['End Time'])
         process.exit(0)
     } catch (error) {
