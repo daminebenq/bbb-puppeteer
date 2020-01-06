@@ -59,15 +59,16 @@ mkdir -p $basePath
 
 bots=$BOTS
 TIMELIMIT_SECONDS=$(($TIMELIMIT_MINUTES * 60))
+TIMELIMIT_UPPER=$(($TIMELIMIT_MINUTES * 60 * 2))
 while [ "$bots" -gt 0 ]; do
-    timeout $TIMELIMIT_SECONDS node bots.js "$URL" "$basePath" $bots $TIMELIMIT_SECONDS &> $basePath/bots.out &
+    timeout $TIMELIMIT_UPPER node bots.js "$URL" "$basePath" $bots $TIMELIMIT_SECONDS &> $basePath/bots.out &
     pids+=($!)
     bots=$(($bots-1))
 done
-timeout $TIMELIMIT_SECONDS node watcher.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/watcher.out &
+timeout $TIMELIMIT_UPPER node watcher.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/watcher.out &
 pids+=($!)
 
-timeout $TIMELIMIT_SECONDS node prober.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/prober.out &
+timeout $TIMELIMIT_UPPER node prober.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/prober.out &
 pids+=($!)
 
 function killprocs()
