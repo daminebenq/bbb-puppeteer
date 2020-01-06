@@ -10,7 +10,7 @@ These autotests are described step by step in this [SpreadSheet](https://docs.go
 
 ## Requirements
 
-  npm: ```apt install npm```
+  Node.js: ```curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -```
 
 ## Installation
 
