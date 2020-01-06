@@ -39,7 +39,7 @@ async function watch() {
             process.exit(1)
         }
         await page.waitFor(10000)
-        const VidUrlminiMongo = await page.evaluate( ()=>{
+        const vidUrlminiMongo = await page.evaluate( ()=>{
             let collection = require('/imports/api/meetings/index.js');
             let url =  collection.default._collection.findOne({},{sort:{externalVideoUrl:-1}})
             return  url.externalVideoUrl
@@ -50,14 +50,14 @@ async function watch() {
             let url =  document.querySelector('div[class="videoPlayer--1MGUuy"] > div > iframe[title="YouTube video player"]').getAttribute('src')
             return url
         });
-        if (VidUrlminiMongo.includes('oplhZIiMmLs') && vidUrlDom.includes('oplhZIiMmLs')){
+        if (vidUrlminiMongo.includes('oplhZIiMmLs') && vidUrlDom.includes('oplhZIiMmLs')){
             log(['Video URL verification passed !'])
         } else {
-            log([`Video URL Verification failed ! (miniMongoVidUrl=${VidUrlminiMongo}) != (vidUrlDom=${vidUrlDom})`])
+            log([`Video URL Verification failed ! (miniMongoVidUrl=${vidUrlminiMongo}) != (vidUrlDom=${vidUrlDom})`])
             process.exit(1)
         } */
 
-        await page.waitFor(TIMELIMIT_MILLISECONDS-34000)
+        await page.waitFor(TIMELIMIT_MILLISECONDS)
         log(['End Time'])
         process.exit(0)
     } catch (error) {
