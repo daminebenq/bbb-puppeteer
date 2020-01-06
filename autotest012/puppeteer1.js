@@ -19,11 +19,11 @@ async function puppeteer1() {
     //    browserWSEndpoint: `ws://209.133.209.137:3000/?token=joao`
     // });
     const page = await browser.newPage();
-
-    log(['Starting Time'])
     page.on('console', async msg => console[msg._type](
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
     ));
+    log(['Starting Time'])
+
     try {
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=RecordSessionTest&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000);
