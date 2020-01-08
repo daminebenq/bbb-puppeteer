@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
-const objectObservableLite = require('object-observable-lite');
 
 var log = function () {
     Array.prototype.unshift.call(
@@ -27,7 +26,7 @@ async function puppeteer1() {
     log(['Starting Time'])
 
     try {
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=getLocks&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=getLocks&meetingname=puppeteer&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000);
         await page.waitFor('[aria-describedby^="modalDismissDescription"]');
         await page.click('[aria-describedby^="modalDismissDescription"]');
@@ -54,10 +53,10 @@ async function puppeteer1() {
         console.log('Send Public chat messages => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.disablePublicChat === false ? 'Unlocked' : 'Locked')
         console.log('Send Private chat messages => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.disablePrivateChat === false ? 'Unlocked' : 'Locked')
         console.log('Edit Shared Notes => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.disableNote === false ? 'Unlocked' : 'Locked')
-        console.log('See other viewers in the Users list => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.hideUserList === false ? 'Unlocked' : 'Locked\n')
+        console.log('See other viewers in the Users list => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.hideUserList === false ? 'Unlocked' : 'Locked')
 
         await page.waitFor(TIMELIMIT_MILLISECONDS)
-        log(['\nEnd Time'])
+        log(['End Time'])
         process.exit(0)
     } catch (error) {
         console.log({error});

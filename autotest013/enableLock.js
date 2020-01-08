@@ -27,7 +27,7 @@ async function puppeteer2() {
     
     try {
         await page.waitFor(3000)
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=ViewOnlyRecord&isModerator=false&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=EnableLocks&meetingname=puppeteer&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000)
         await page.evaluate(()=>document.querySelector('[aria-describedby^="modalDismissDescription"]').click());
         await page.waitFor(15000);
