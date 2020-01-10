@@ -26,11 +26,11 @@ async function puppeteer1() {
     log(['Starting Time'])
 
     try {
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=getLocks&meetingname=puppeteer&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=getLocks&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000);
         await page.waitFor('[aria-describedby^="modalDismissDescription"]');
         await page.click('[aria-describedby^="modalDismissDescription"]');
-        await page.waitFor(3000);        await page.waitFor(3000);
+        await page.waitFor(3000);
         
         const meetinglocksList = await page.evaluate(()=>{
             let collection = require('/imports/api/meetings/index.js');

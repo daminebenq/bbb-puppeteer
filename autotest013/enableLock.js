@@ -26,12 +26,19 @@ async function puppeteer2() {
     log(['Starting Time'])
     
     try {
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=EnableLocks&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.waitForSelector('[aria-describedby^="modalDismissDescription"]');
+        await page.click('[aria-describedby^="modalDismissDescription"]');        
+        await page.evaluate(async ()=>await document.querySelectorAll('[class="icon--2q1XXw icon-bbb-settings"]')[0].click());
         await page.waitFor(3000)
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=EnableLocks&meetingname=puppeteer&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.evaluate(async ()=>await document.querySelector('i[class~="icon-bbb-lock"]').parentNode.click())
         await page.waitFor(3000)
-        await page.evaluate(()=>document.querySelector('[aria-describedby^="modalDismissDescription"]').click());
-        await page.waitFor(15000);
-
+        await page.evaluate(async ()=>await document.querySelectorAll('[class="react-toggle switch--Z1LfDwO"]')[2].click());
+        await page.waitFor(3000)
+        await page.evaluate(
+            async ()=>await document.querySelectorAll('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO"]')[0]
+            .click()
+        );
         await page.waitFor(TIMELIMIT_MILLISECONDS-21000)
         log(['End Time'])
         process.exit(0)
