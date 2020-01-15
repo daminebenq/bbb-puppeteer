@@ -3,7 +3,6 @@ const URL = process.argv[2]
 const bots = process.argv[4]
 const TIMELIMIT_SECONDS = parseInt(process.argv[5])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
-var repeat;
 var log = function () {
     Array.prototype.unshift.call(
         arguments,
@@ -11,17 +10,27 @@ var log = function () {
     );
     return console.log.apply(console, arguments);
 };
+
+function repeat_string(string, count) {
+    if ((string == null) || (count < 0) || (count === Infinity) || (count == null))
+      {
+        return('Error in string or count.');
+      }
+        count = count | 0; // Floor count.
+    return new Array(count + 1).join(string);
+}
+
 async function bot() {
     const browser = await puppeteer.launch({
         headless: false,
-        args: [ '--use-fake-ui-for-media-stream',
+        executablePath: '/usr/bin/google-chrome',
+        args: [
         '--window-size=800,600',
         '--unlimited-storage', 
         '--full-memory-crash-report',
         '--no-sandbox'
         ]
     });
-
     const page = await browser.newPage();
     page.on('console', async msg => console[msg._type](
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
@@ -58,19 +67,17 @@ async function bot() {
                 disableNote: meetinglocksList.meetingLocksListObj.lockSettingsProps.disableNote,
                 hideUserList: meetinglocksList.meetingLocksListObj.lockSettingsProps.hideUserList
             }
-            
+
+            // Wait for 15 Seconds
+
             // Checking Share Webcam Lock
-            if (cases.disableCam === true){
-                repeat = 1;
+            while (cases.disableCam === true){
+                await page.waitFor(15000)
                 do {
-                    if(repeat < 2){
-                        console.log('Share WebCam Lock is active !');
-                        repeat++;
-                    }
+                    console.log(repeat_string('Share WebCam Lock is active !', 1));
                 } while (await page.evaluate(async()=>await $('button[aria-label="Share webcam"][aria-disabled="false"]')))
                 do {
-                    console.log('Share WebCam Lock isn\'t active !');
-                    console.log('Error occured !')
+                    log([{error},"Error at Share Webcam Lock !"])
                     process.exit(1)
                 } while (await page.evaluate(async()=>await $('button[aria-label="Share webcam"][aria-disabled="true"]')))
             }
@@ -83,34 +90,32 @@ async function bot() {
             // }
 
             // Checking Share Microphone Lock
-            if (cases.disableMic === true){
+            while (cases.disableMic === true){
+                await page.waitFor(15000)
+                await page.waitForSelector('button[aria-label="Join audio"]')
+                await page.click('button[aria-label="Join audio"]')
 
-                const checkToastify = (string)=>{
-                    const checkExistance = page.evaluate(()=>{
-                        const numerOfLastToastifyElement = document.querySelector('[class="Toastify__toast-container Toastify__toast-container--top-right container--ZT6KKx"]').childNodes.length + 1
-                        const str = document.querySelectorAll('div.message--Z1R4N9M')[numerOfLastToastifyElement].innerHTML
-                        return str === "Viewers' microphones are enabled"
-                    })
-                    return string
-                }
-                
-                switch(checkToastify()){
-                    case true:
-                        console.log('Share Microphone Lock isn\'t active !');
-                        console.log('Error occured !')
-                        process.exit(1)
-                    case false:
-                        console.log('Share Microphone Lock is active !');
-                }
+                const countButtons = await page.evaluate(()=>{
+                    let count = document.querySelectorAll('button[class="jumbo--Z12Rgj4 buttonWrapper--x8uow audioBtn--1H6rCK"]').length
+                    return count
+                })
+                await countButtons === 1
+            }
+
+            // Checking Public Chat Lock
+            while (cases.disablePublicChat === true){
+                await page.waitFor(15000)
+                const disabledButton = await page.evaluate(()=>document.querySelector('[aria-label="Send message"]').getAttribute("aria-disabled"))
+                const attr = await page.$$eval('[aria-label="Send message"]', el => el.find(x => x.getAttribute("aria-disabled")===true));   
+                console.log(attr)
             }
         }
         log(['End Time'])
         process.exit(0)
     }   
     catch(error){
-        const time = new Date()
-        console.log({error}, ' at => ',time)
-        process.exit(1);
-    }
+        log([{error},"There was an ERROR !"])
+        process.exit(1)
+}
 }
 bot();

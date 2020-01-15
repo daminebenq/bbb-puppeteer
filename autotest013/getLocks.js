@@ -45,7 +45,7 @@ async function puppeteer1() {
             var locksListObj = locksObjects()
             return locksListObj
         })
-
+        await page.waitFor(15000)
         console.log('\n|---- Locks Settings List ----|')
         console.log('Share Webcam => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.disableCam === false ? 'Unlocked' : 'Locked')
         console.log('See other viewers webcams => ', meetinglocksList.userPropsLocksListObj.usersProp.webcamsOnlyForModerator === false ? 'Unlocked' : 'Locked')
@@ -55,7 +55,7 @@ async function puppeteer1() {
         console.log('Edit Shared Notes => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.disableNote === false ? 'Unlocked' : 'Locked')
         console.log('See other viewers in the Users list => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.hideUserList === false ? 'Unlocked' : 'Locked')
 
-        await page.waitFor(TIMELIMIT_MILLISECONDS)
+        await page.waitFor(TIMELIMIT_MILLISECONDS-15000)
         log(['End Time'])
         process.exit(0)
     } catch (error) {
