@@ -1,7 +1,5 @@
 const puppeteer = require('puppeteer');
 const URL = process.argv[2]
-const TIMELIMIT_SECONDS = parseInt(process.argv[4])
-const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 
 var log = function () {
     Array.prototype.unshift.call(
@@ -55,7 +53,8 @@ async function puppeteer1() {
         console.log('Edit Shared Notes => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.disableNote === false ? 'Unlocked' : 'Locked')
         console.log('See other viewers in the Users list => ', meetinglocksList.meetingLocksListObj.lockSettingsProps.hideUserList === false ? 'Unlocked' : 'Locked')
 
-        await page.waitFor(TIMELIMIT_MILLISECONDS-15000)
+        await page.waitFor(5000)
+
         log(['End Time'])
         process.exit(0)
     } catch (error) {

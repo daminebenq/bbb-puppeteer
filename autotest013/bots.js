@@ -3,13 +3,6 @@ const URL = process.argv[2]
 const bots = process.argv[4]
 const TIMELIMIT_SECONDS = parseInt(process.argv[5])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
-var log = function () {
-    Array.prototype.unshift.call(
-        arguments,
-        '['+new Date()+']'
-    );
-    return console.log.apply(console, arguments);
-};
 
 function repeat_string(string, count) {
     if ((string == null) || (count < 0) || (count === Infinity) || (count == null))
@@ -23,7 +16,6 @@ function repeat_string(string, count) {
 async function bot() {
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: '/usr/bin/google-chrome',
         args: [
         '--window-size=800,600',
         '--unlimited-storage', 
@@ -32,6 +24,13 @@ async function bot() {
         ]
     });
     const page = await browser.newPage();
+    var log = function () {
+        Array.prototype.unshift.call(
+            arguments,
+            '['+new Date()+']'
+        );
+        return console.log.apply(console, arguments);
+    };
     page.on('console', async msg => console[msg._type](
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
     ));
@@ -68,8 +67,6 @@ async function bot() {
                 hideUserList: meetinglocksList.meetingLocksListObj.lockSettingsProps.hideUserList
             }
 
-            // Wait for 15 Seconds
-
             // Checking Share Webcam Lock
             while (cases.disableCam === true){
                 await page.waitFor(15000)
@@ -99,15 +96,36 @@ async function bot() {
                     let count = document.querySelectorAll('button[class="jumbo--Z12Rgj4 buttonWrapper--x8uow audioBtn--1H6rCK"]').length
                     return count
                 })
-                await countButtons === 1
+                countButtons === 1 ? console.log(repeat_string("Share Microphone Lock is Active !", 1)) : process.exit(1, console.log("The was an Error !"))
             }
 
             // Checking Public Chat Lock
             while (cases.disablePublicChat === true){
                 await page.waitFor(15000)
-                const disabledButton = await page.evaluate(()=>document.querySelector('[aria-label="Send message"]').getAttribute("aria-disabled"))
-                const attr = await page.$$eval('[aria-label="Send message"]', el => el.find(x => x.getAttribute("aria-disabled")===true));   
-                console.log(attr)
+                const attr = await page.evaluate(()=>document.querySelector('[aria-label="Send message"]').getAttribute("aria-disabled"));   
+                attr === "true" ? console.log(repeat_string("Public Chat Lock is Active !", 1)) : process.exit(1, console.log("The was an Error !")) 
+            }
+
+            // Checking Private Chat Lock
+            while (cases.disablePrivateChat === true){
+                await page.waitFor(15000)
+                await page.evaluate(()=>
+                    document.querySelectorAll('[aria-label^="Bot-"]')[1]
+                    .parentElement.parentElement
+                    .parentElement.querySelector('[class="content--ZmitSl right-top--Z1QyptE dropdownContent--ZpTliS"]') === null
+                     ? console.log("Private Chat Lock is Active !") 
+                     : process.exit(1, console.log("The was an Error !"))
+                );
+            }
+
+            // Checking See other viewers in the Users list Lock
+            while (cases.hideUserList === true){
+                await page.waitFor(15000)
+                await page.evaluate(()=>
+                    document.querySelectorAll('div.avatar--Z2lyL8K:not(.moderator--24bqCT)').length === 1
+                    ? console.log("See other viewers in the Users list Lock is Active !")
+                    : console.log("The was an Error !")
+                )
             }
         }
         log(['End Time'])

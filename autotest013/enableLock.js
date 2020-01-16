@@ -33,7 +33,7 @@ async function puppeteer2() {
         await page.waitFor(3000)
         await page.evaluate(async ()=>await document.querySelector('i[class~="icon-bbb-lock"]').parentNode.click())
         await page.waitFor(3000)
-        await page.evaluate(async()=>await document.querySelectorAll('[class="react-toggle-screenreader-only"][aria-label="Send Public chat messages"]')[0].parentElement.click());
+        await page.evaluate(async()=>await document.querySelectorAll('[class="react-toggle-screenreader-only"][aria-label="Edit Shared Notes"]')[0].parentElement.click());
         await page.waitFor(3000)
         await page.evaluate(
             async ()=>await document.querySelectorAll('[class="button--Z2dosza md--Q7ug4 primary--1IbqAO"]')[0]
