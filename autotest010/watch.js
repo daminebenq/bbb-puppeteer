@@ -36,26 +36,9 @@ async function watch() {
         if(vidExists){
             log(['An External Video is displayed in the Presentation Area !'])
         } else {
+            console.log('There was an ERROR !!')
             process.exit(1)
         }
-        await page.waitFor(10000)
-        const vidUrlminiMongo = await page.evaluate( ()=>{
-            let collection = require('/imports/api/meetings/index.js');
-            let url =  collection.default._collection.findOne({},{sort:{externalVideoUrl:-1}})
-            return  url.externalVideoUrl
-        })
-
-        // Checking if DOM receives the same video as miniMongo
-        /* const vidUrlDom = await page.evaluate( ()=>{
-            let url =  document.querySelector('div[class="videoPlayer--1MGUuy"] > div > iframe[title="YouTube video player"]').getAttribute('src')
-            return url
-        });
-        if (vidUrlminiMongo.includes('oplhZIiMmLs') && vidUrlDom.includes('oplhZIiMmLs')){
-            log(['Video URL verification passed !'])
-        } else {
-            log([`Video URL Verification failed ! (miniMongoVidUrl=${vidUrlminiMongo}) != (vidUrlDom=${vidUrlDom})`])
-            process.exit(1)
-        } */
 
         await page.waitFor(TIMELIMIT_MILLISECONDS)
         log(['End Time'])
