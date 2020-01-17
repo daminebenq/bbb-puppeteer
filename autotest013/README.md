@@ -33,15 +33,3 @@ example:
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
-
-## Outputs
-
-The outputs of `puppeteer01.js` and `puppeteer02.js` are displayed in `JSON` files.
-
-## Parsing the results
-
-`parser.js` is used to parse the `metrics01.json` and `metrics02.json` into TSV files `metrics01.tsv` and `metrics02.tsv`.
-
-## Graphs
-
-`metrics01.tsv` and `metrics02.tsv` are used to draw graphs in google spreadsheets.
