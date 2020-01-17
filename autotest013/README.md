@@ -17,19 +17,19 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 
 ## Running
 
-To run, execute `./autotest013/run.sh -u *URL* -b *BOTS*`
+To run, execute `./autotest013/run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES*` 
 
 or also running: 
 
 ```
 cd autotest013
-./run.sh -u *URL* -b *BOTS*
+./run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES*
 ```
 
 ~~~bash
 example: 
 
-./autotest013/run.sh -u https://bbb-website.com -b 3
+./autotest013/run.sh -u https://bbb-website.com -b 3 -d TIMELIMIT_MINUTES
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
