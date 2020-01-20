@@ -12,6 +12,11 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 
 This script generates the log file `puppeteer01.out`, `puppeteer02.out` and `puppeteer03.out` and the Metrics in `metrics01.json`, `metrics02.json`and `metrics03.json` file.
 
+## The Use Case
+
+- *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
+- *URL* => The BBB dev server link.
+
 ## Running
 
 To run, execute `./autotest009/run.sh -u *URL* -d *TIMELIMIT_MINUTES*`
