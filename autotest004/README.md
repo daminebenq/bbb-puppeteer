@@ -12,6 +12,10 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 
 This script generates the log file `data/puppeteer01.out` and the Metrics in `data/metrics1.json` file.
 
+## The Use Case
+
+- *URL* => The BBB dev server link.
+
 ## Running
 
 To run, execute `./autotest004/run.sh *URL*`
@@ -36,11 +40,3 @@ The default script will launch the clients it needs on the server you describe i
 
 The downloaded PDF file will be found in your default download folder.
 example: `~/Downloads/`
-
-## Screenshots
-
-The outputs of `puppeteer01.js` will be displayed as in the picture below:
-<img align="left" src="../images/screenshot.png">
-
-The metrics will show something like this:
-<img align="left" src="../images/metrics.png">

@@ -76,6 +76,5 @@ async function puppeteer1() {
         console.log({error})
         process.exit(1);
     }
-    browser.close()
 }
 puppeteer1();
