@@ -9,16 +9,6 @@ This script Checks:
     - if Puppeteer03 (`enableLock.js`) is able to enable a Lock Setting or not
     - if the server receives the Locks requested by Moderator/Presenter or not
 
-## Requirement
-
-This Test requires a very specific chrome video file,
-[video_rgb.y4m](https://docs.google.com/uc?export=download&id=1I1ehFgKUraSCqCbB4VpxG5KkxQ1o7dKZ)
-
-After downloading the file copy and paste it in `autotest013/` folder.
-The name of the file should be `video_rgb.y4m`.
-
-This file was used previously in *auotest006* and can be found in `autotest006/` folder. 
-
 ## Details
 
 This script runs 3 puppeteer instances and gets their Metrics, the Performance stats.
@@ -30,14 +20,24 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 - *BOTS* => The number of Bots to use in the Test (_Number_)
 - *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
 - *TEST_CASE* =>
-    - *1* => *Share webcam* Test Case 
-    - *2* => *See other viewers webcams* Test Case (_requires atleast 2 Bots_)
+    - *1* => *Share webcam* Test Case [REQUIRED](#requirement)
+    - *2* => *See other viewers webcams* Test Case [REQUIRED](#requirement) (_requires atleast 2 Bots_)
     - *3* => *Share microphone* Test Case
     - *4* => *Send Public chat messages* Test Case
     - *5* => *Send Private chat messages* Test Case (_requires atleast 2 Bots_)
     - *6* => *Edit Shared Notes* Test Case
     - *7* => *See other viewers in the Users list* Test Case (_requires atleast 2 Bots_)
 - *URL* => The BBB dev server link.
+
+## Requirement
+
+This Test requires a very specific chrome video file,
+[video_rgb.y4m](https://docs.google.com/uc?export=download&id=1I1ehFgKUraSCqCbB4VpxG5KkxQ1o7dKZ)
+
+After downloading the file copy and paste it in `autotest013/` folder.
+The name of the file should be `video_rgb.y4m`.
+
+This file was used previously in *auotest006* and can be found in `autotest006/` folder. 
 
 ## Running
 
