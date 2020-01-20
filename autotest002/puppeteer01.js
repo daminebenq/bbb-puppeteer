@@ -17,6 +17,14 @@ async function puppeteer1() {
         ]
     });
     const page = await browser.newPage();
+    page.on('console', async msg => console[msg._type](
+        ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
+      ));
+      page.on("error", function (err) {  
+        var errValue = err.toString();
+        console.log("Error: " + errValue)
+        process.exit(1)
+      })
     try {
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=Puppeteer1&isModerator=false&action=create`);
 
@@ -48,7 +56,5 @@ async function puppeteer1() {
         console.log({error});
         process.exit(1)
     }
-    browser.close();
-    browser.close()
 }
 puppeteer1()
