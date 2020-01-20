@@ -20,9 +20,6 @@ async function dictate() {
             '--no-sandbox'
         ]
     });
-    // const browser = await puppeteer.connect({
-    //    browserWSEndpoint: `ws://209.133.209.137:3000/?token=joao`
-    // });
     const page = await browser.newPage();
 
     log(['Starting Time'])

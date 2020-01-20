@@ -13,6 +13,11 @@ This script runs 2 puppeteer instances and gets their Metrics, the Performance s
 
 This script generates execution folder with the name `Date_ExecutionNum` (example: `data/01-01-2019_1`) inside autotest011 folder.
 
+## The Use Case
+
+- *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
+- *URL* => The BBB dev server link.
+
 ## IMPORTANT NOTE
 
 To run this test, you should make sure that you have the audio dictation mode enabled in your `settings.yml` file; So let's make sure you have it enabled first.
