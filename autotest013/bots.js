@@ -29,6 +29,11 @@ async function bot() {
     page.on('console', async msg => console[msg._type](
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
     ));
+    page.on("error", function (err) {  
+        var errValue = err.toString();
+        console.log("Error: " + errValue)
+        process.exit(1)
+    })
     log(['Starting Time'])
     try{
         page.setDefaultTimeout(120000);
@@ -69,8 +74,8 @@ async function bot() {
                     console.log('Share WebCam Lock is active !');
                 } while (await page.evaluate(async()=>await $('button[aria-label="Share webcam"][aria-disabled="false"]')))
                 do {
-                    log([{error},"Error at Share Webcam Lock !"])
-                    process.exit(1)
+                    log(["Error at Share Webcam Lock !"])
+                    console.log('There was an error') 
                 } while (await page.evaluate(async()=>await $('button[aria-label="Share webcam"][aria-disabled="true"]')))
             }
 
@@ -95,7 +100,7 @@ async function bot() {
                 const viewersCount = await page.evaluate(()=>
                     document.querySelectorAll('div.avatar--Z2lyL8K:not(.moderator--24bqCT)').length
                 )
-                viewersCount !== webcamsCount ? console.log("See other viewers webcams Lock is Active !") : process.exit(1) && console.log("There was an ERROR !!") 
+                viewersCount !== webcamsCount ? console.log("See other viewers webcams Lock is Active !") : console.log('There was an error') 
             }
 
             // Checking Share Microphone Lock
@@ -108,14 +113,14 @@ async function bot() {
                     let count = document.querySelectorAll('button[class="jumbo--Z12Rgj4 buttonWrapper--x8uow audioBtn--1H6rCK"]').length
                     return count
                 })
-                countButtons === 1 ? console.log("Share Microphone Lock is Active !") : process.exit(1, console.log("The was an Error !"))
+                countButtons === 1 ? console.log("Share Microphone Lock is Active !") : console.error('There was an error', err) 
             }
 
             // Checking Public Chat Lock
             while (cases.disablePublicChat === true){
                 await page.waitFor(15000)
                 const attr = await page.evaluate(()=>document.querySelector('[aria-label="Send message"]').getAttribute("aria-disabled"));   
-                attr === "true" ? console.log("Public Chat Lock is Active !") : console.log("The was an Error !") && process.exit(1)
+                attr === "true" ? console.log("Public Chat Lock is Active !") : console.log('There was an error') 
             }
 
             // Checking Private Chat Lock
@@ -126,7 +131,7 @@ async function bot() {
                     .parentElement.parentElement
                     .parentElement.querySelector('[class="content--ZmitSl right-top--Z1QyptE dropdownContent--ZpTliS"]') === null
                      ? console.log("Private Chat Lock is Active !") 
-                     : process.exit(1, console.log("The was an Error !"))
+                     : console.log('There was an error') 
                 );
             }
 
@@ -140,7 +145,7 @@ async function bot() {
                     document.querySelectorAll('iframe')[0].contentDocument
                     .querySelectorAll('[class="menu_left"]')[0].querySelectorAll('li').length === 0
                      ? console.log("Edit Shared Notes Lock is Active !")
-                      : process.exit(1) && console.log("The was an Error !")
+                      : console.log('There was an error') 
                 )
             }
 
@@ -150,7 +155,7 @@ async function bot() {
                 await page.evaluate(()=>
                     document.querySelectorAll('div.avatar--Z2lyL8K:not(.moderator--24bqCT)').length === 1
                     ? console.log("See other viewers in the Users list Lock is Active !")
-                    : console.log("The was an Error !")
+                    : console.log('There was an error') 
                 )
             }
         }
@@ -160,6 +165,6 @@ async function bot() {
     catch(error){
         log([{error},"There was an ERROR !"])
         process.exit(1)
-}
+    }
 }
 bot();

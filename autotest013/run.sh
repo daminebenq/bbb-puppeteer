@@ -3,15 +3,27 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 pids=()
 
-while getopts u:b:d: option
+while getopts u:b:d:t: option
 do
 case "${option}"
 in
 u) URL=${OPTARG};;
 b) BOTS=${OPTARG};;
 d) TIMELIMIT_MINUTES=${OPTARG};;
+t) TEST_CASE=${OPTARG};;
 esac
 done
+
+case $TEST_CASE in
+1) TESTCASE="1";;#"Share webcam";;
+2) TESTCASE="2";;#"See other viewers webcams";;
+3) TESTCASE="3";;#"Share microphone";;
+4) TESTCASE="4";;#"Send Public chat messages";;
+5) TESTCASE="5";;#"Send Private chat messages";;
+6) TESTCASE="6";;#"Edit Shared Notes";;
+7) TESTCASE="7";;#"See other viewers in the Users list";;
+*) echo "Please select a real Lock Setting Test Case !";;
+esac
 
 if [ -z "$URL" ] ; then
    echo -e "Enter BBB Base Server URL:"
@@ -40,9 +52,40 @@ if ! [[ "$TIMELIMIT_MINUTES" =~ ^[0-9]+$ ]] ; then
     exit 1; 
 fi
 
+if  [ -z "$TESTCASE" ] ; then
+    echo -e "Enter TESTCASE:"
+    read TESTCASE;
+fi;
+if ! [[ "$TESTCASE" =~ ^[1-7]+$ ]] ; then
+    echo "No TESTCASE provided";
+    exit 1; 
+fi;
+
 echo URL: $URL;
 echo BOTS: $BOTS;
 echo TIMELIMIT_MINUTES: $TIMELIMIT_MINUTES "minute(s)";
+if [ "$TESTCASE" -eq "1" ]; then
+   echo "TESTCASE: Share webcam";
+fi
+if [ "$TESTCASE" -eq "2" ]; then
+   echo "TESTCASE: See other viewers webcams";
+fi
+if [ "$TESTCASE" -eq "3" ]; then
+   echo "TESTCASE: Share microphone";
+fi
+if [ "$TESTCASE" -eq "4" ]; then
+   echo "TESTCASE: Send Public chat messages";
+fi
+if [ "$TESTCASE" -eq "5" ]; then
+   echo "TESTCASE: Send Private chat messages";
+fi
+if [ "$TESTCASE" -eq "6" ]; then
+   echo "TESTCASE: Edit Shared Notes";
+fi
+if [ "$TESTCASE" -eq "7" ]; then
+   echo "TESTCASE: See other viewers in the Users list";
+fi
+
 
 echo "Executing..."
 
@@ -62,15 +105,15 @@ TIMELIMIT_SECONDS=$(($TIMELIMIT_MINUTES * 60))
 TIMELIMIT_UPPER=$(($TIMELIMIT_MINUTES * 60 * 2))
 
 while [ "$bots" -gt 0 ]; do
-    timeout $TIMELIMIT_UPPER node bots.js "$URL" "$basePath" $bots $TIMELIMIT_SECONDS &> $basePath/bots.out &
+    timeout $TIMELIMIT_UPPER node bots.js "$URL" "$basePath" $bots $TIMELIMIT_SECONDS "$TESTCASE" &> $basePath/bots.out &
     pids+=($!)
     bots=$(($bots-1))
 done
 timeout $TIMELIMIT_UPPER node getLocks.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/getLocks.out &
 pids+=($!)
-timeout $TIMELIMIT_UPPER node checkLock.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/checkLock.out &
+timeout $TIMELIMIT_UPPER node checkLock.js "$URL" "$basePath" $TIMELIMIT_SECONDS "$TESTCASE" &> $basePath/checkLock.out &
 pids+=($!)
-timeout $TIMELIMIT_UPPER node enableLock.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/enableLock.out &
+timeout $TIMELIMIT_UPPER node enableLock.js "$URL" "$basePath" $TIMELIMIT_SECONDS "$TESTCASE" &> $basePath/enableLock.out &
 pids+=($!)
 
 function killprocs()

@@ -4,9 +4,9 @@
 
 This script is about Lock Settings.
 This script Checks:
-    - if Puppeteer01 is able to see the Locks Settings or not
-    - if Puppeteer02 is able to check if the enabled Lock Setting is affecting the meeting or not
-    - if Puppeteer03 is able to enable a Lock Setting or not
+    - if Puppeteer01 (`bots.js`) is affected by the Lock or not
+    - if Puppeteer02 (`getLocks.js`) is able to see and get the Locks Settings from miniMongo
+    - if Puppeteer03 (`enableLock.js`) is able to enable a Lock Setting or not
     - if the server receives the Locks requested by Moderator/Presenter or not
 
 ## Details
@@ -15,21 +15,35 @@ This script runs 3 puppeteer instances and gets their Metrics, the Performance s
 
 This script generates execution folder with the name `Date_ExecutionNum` (example: `data/01-01-2019_1`) inside autotest013 folder.
 
+## The Use Case
+
+- *BOTS* => The number of Bots to use in the Test (_Number_)
+- *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
+- *TEST_CASE* =>
+    1. *1* => *Share webcam* Test Case 
+    2. *2* => *See other viewers webcams* Test Case (_requires atleast 2 Bots_)
+    3. *3* => *Share microphone* Test Case
+    4. *4* => *Send Public chat messages* Test Case
+    5. *5* => *Send Private chat messages* Test Case (_requires atleast 2 Bots_)
+    6. *6* => *Edit Shared Notes* Test Case
+    7. *7* => *See other viewers in the Users list* Test Case (_requires atleast 2 Bots_)
+- *URL* => The BBB dev server link.
+
 ## Running
 
-To run, execute `./autotest013/run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES*` 
+To run, execute `./autotest013/run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES* -t *TEST_CASE*` 
 
 or also running: 
 
 ```
 cd autotest013
-./run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES*
+./run.sh -u *URL* -b *BOTS* -d *TIMELIMIT_MINUTES* -t *TEST_CASE*
 ```
 
 ~~~bash
 example: 
 
-./autotest013/run.sh -u https://bbb-website.com -b 3 -d TIMELIMIT_MINUTES
+./autotest013/run.sh -u https://test.bigbluebutton.org -b 2 -d 1 -t 2
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
