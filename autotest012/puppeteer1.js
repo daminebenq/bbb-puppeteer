@@ -15,9 +15,7 @@ async function puppeteer1() {
         headless: false,
 	    args: ['--no-sandbox']
     });
-    // const browser = await puppeteer.connect({
-    //    browserWSEndpoint: `ws://209.133.209.137:3000/?token=joao`
-    // });
+
     const page = await browser.newPage();
     page.on('console', async msg => console[msg._type](
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
