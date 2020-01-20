@@ -27,7 +27,7 @@ async function puppeteer1() {
     log(['Starting Time'])
     page.on('console', async msg => console[msg._type](
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
-      ));
+    ));
     try{
         page.setDefaultTimeout(120000);
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=Probe&isModerator=false&action=create`);
@@ -35,7 +35,7 @@ async function puppeteer1() {
         await page.click('[aria-describedby^="modalDismissDescription"]');
         for (var i = TIMELIMIT_MILLISECONDS; i >= 0; i--) {
             // // Show FPS Panel in the browser
-            await page.evaluate(()=>{
+            await page.evaluate(async()=>{
                 var script=await document.createElement('script');
                 script.onload=await function(){
                     var stats=new Stats();
