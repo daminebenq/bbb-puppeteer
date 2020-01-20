@@ -18,23 +18,6 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 - *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
 - *URL* => The BBB dev server link.
 
-## IMPORTANT NOTE
-
-To run this test, you should make sure that you have the audio dictation mode enabled in your `settings.yml` file; So let's make sure you have it enabled first.
-
-Go to your BBB server terminal and execute this:
-`locate settings.yml`
-
-Once done, proceed editing the settings file:
-`nano /root/dev/bigbluebutton/bigbluebutton-html5/private/config/settings.yml`
-
-CTRL+W and try to find: `enableDictation`
-
-Set it to `true` save and exit the file, or if it's already set to `true` just CTRL+X.
-
-Next, restart your HTML5 service: `sudo systemctl restart bbb-html5`
-
-
 ## Running
 
 To run, execute `./autotest012/run.sh -u *URL* -d *TIMELIMIT_MINUTES*`
