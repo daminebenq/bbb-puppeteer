@@ -21,10 +21,6 @@ async function bots() {
         '--no-sandbox'
     ];
 
-    // const browser = await puppeteer.connect({
-    //    browserWSEndpoint: `ws://209.133.209.137:3000/?token=joao`
-    // });
-
     const browser = await puppeteer.launch({
         headless: true,
         args: pupeteerArgs
