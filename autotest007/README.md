@@ -12,9 +12,15 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 
 This script generates the log files `puppeteer01.out`, `puppeteer02.out` and `puppeteer03.out` and the Metrics in `puppeteer02.json` and `puppeteer03.json` files.
 
+## The Use Case
+
+- *BOTS* => The number of Bots to use in the Test (_Number_)
+- *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
+- *URL* => The BBB dev server link.
+
 ## Running
 
-To run, execute `./autotest007/run.sh -u URL -b BOTS -d TIMELIMIT_MINUTES`
+To run, execute `./autotest007/run.sh -u URL -b *BOTS* -d *TIMELIMIT_MINUTES*`
 
 or also running: 
 
@@ -27,7 +33,7 @@ cd autotest007
 ~~~bash
 example: 
 
-./autotest007/run.sh -u https://bbb-website.com -b BOTS -d TIMELIMIT_MINUTES
+./autotest007/run.sh -u https://bbb-website.com -b *BOTS* -d *TIMELIMIT_MINUTES*
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
@@ -49,9 +55,4 @@ This will create `watcher.tsv` and `prober.tsv` files, that we will simply impor
 
 ## Graphs
 
-`watcher.tsv` and `prober.tsv` are used to draw charts in google spreadsheets:
-
-for example: 
-
-[With Virtualized Lists](https://docs.google.com/spreadsheets/d/1sWmln2iHUBrD5F4WEykgpFqAVwAItOcanB5mKKaaeho/edit?usp=sharing) => [pr-8287](https://github.com/bigbluebutton/bigbluebutton/pull/8287)
-
+`watcher.tsv` and `prober.tsv` are used to draw charts in google spreadsheets.
