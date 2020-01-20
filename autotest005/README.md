@@ -18,6 +18,10 @@ The shapes files will be found in the `data` folder as `shapes01.svg` and `shape
 
 The content of the `shapes01.svg` and `shapes02.svg` is checked by `contentCheck.js` and it's logging the error log in `contentCheck.out`
 
+## The Use Case
+
+- *URL* => The BBB dev server link.
+
 ## Running
 
 To run, execute `./autotest005/run.sh *URL*`
@@ -27,7 +31,7 @@ or also running:
 ```
 cd autotest005
 
-./run.sh
+./run.sh *URL*
 ```
 
 ~~~bash
@@ -37,11 +41,3 @@ example:
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
-
-## Screenshots
-
-The outputs of `puppeteer01.js` and `puppeteer02.js` will be displayed as in the picture below:
-![outputs](../images/screenshot.png "outputs")
-
-The metrics will show something like this:
-![metrics](../images/metrics.png "metrics")
