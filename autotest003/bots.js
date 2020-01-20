@@ -11,7 +11,15 @@ const puppeteer = require('puppeteer');
         ]
     });
   const page = await browser.newPage();
-  num = Math.floor(Math.random() * (+8999)) + 1000
+  page.on('console', async msg => console[msg._type](
+    ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
+  ));
+  page.on("error", function (err) {  
+    var errValue = err.toString();
+    console.log("Error: " + errValue)
+    process.exit(1)
+  })
+  var num = Math.floor(Math.random() * (+8999)) + 1000
   await page.goto( `${URL}`+'/demo/demoHTML5.jsp?username=Bot' + num + '&isModerator=false&action=create' );
   await page.waitFor(3000);
   await page.waitFor('[aria-describedby^="modalDismissDescription"]');

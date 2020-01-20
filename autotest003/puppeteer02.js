@@ -51,6 +51,5 @@ async function puppeteer2() {
         console.log({error})
         process.exit(1)
     }
-    browser.close()
 }
 puppeteer2()

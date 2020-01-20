@@ -13,6 +13,10 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 
 This script generates the log files `data/puppeteer01.out` and `data/puppeteer02.out` and the Metrics in `data/metrics1.json` and `data/metrics2.json` file.
 
+## The Use Case
+
+- *URL* => The BBB dev server link.
+
 ## Running
 
 To run, execute `./autotest003/run.sh *URL*`
@@ -22,7 +26,7 @@ or also running:
 ```
 cd autotest003
 
-./run.sh
+./run.sh *URL*
 ```
 
 ~~~bash
@@ -32,11 +36,3 @@ example:
 ~~~
 
 The default script will launch the clients it needs on the server you describe in the URL.
-
-## Screenshots
-
-The outputs of `puppeteer01.js` and `puppeteer02.js` will be displayed as in the picture below:
-![outputs](../images/screenshot.png "outputs")
-
-The metrics will show something like this:
-![metrics](../images/metrics.png "metrics")
