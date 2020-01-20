@@ -16,9 +16,6 @@ async function share() {
         executablePath: '/usr/bin/google-chrome',
 	    args: ['--no-sandbox']
     });
-    // const browser = await puppeteer.connect({
-    //    browserWSEndpoint: `ws://209.133.209.137:3000/?token=joao`
-    // });
     const page = await browser.newPage();
 
     log(['Starting Time'])
