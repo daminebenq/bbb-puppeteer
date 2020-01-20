@@ -9,6 +9,16 @@ This script Checks:
     - if Puppeteer03 (`enableLock.js`) is able to enable a Lock Setting or not
     - if the server receives the Locks requested by Moderator/Presenter or not
 
+## Requirement
+
+This Test requires a very specific chrome video file,
+[video_rgb.y4m](https://docs.google.com/uc?export=download&id=1I1ehFgKUraSCqCbB4VpxG5KkxQ1o7dKZ)
+
+After downloading the file copy and paste it in `autotest013/` folder.
+The name of the file should be `video_rgb.y4m`.
+
+This file was used previously in *auotest006* and can be found in `autotest006/` folder. 
+
 ## Details
 
 This script runs 3 puppeteer instances and gets their Metrics, the Performance stats.
