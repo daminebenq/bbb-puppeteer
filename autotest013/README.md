@@ -20,8 +20,8 @@ This script generates execution folder with the name `Date_ExecutionNum` (exampl
 - *BOTS* => The number of Bots to use in the Test (_Number_)
 - *TIMELIMIT_MINUTES* => TimeLimit to run the whole test in minutes (_Number_)
 - *TEST_CASE* =>
-    - *1* => *Share webcam* Test Case [REQUIRED](#requirement)
-    - *2* => *See other viewers webcams* Test Case [REQUIRED](#requirement) (_requires atleast 2 Bots_)
+    - *1* => *Share webcam* Test Case ([REQUIRED](#requirement))
+    - *2* => *See other viewers webcams* Test Case ([REQUIRED](#requirement)) (_requires atleast 2 Bots_)
     - *3* => *Share microphone* Test Case
     - *4* => *Send Public chat messages* Test Case
     - *5* => *Send Private chat messages* Test Case (_requires atleast 2 Bots_)
