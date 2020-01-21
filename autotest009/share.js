@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const basePath = process.argv[3]
 var path = require('path'); 
@@ -20,7 +20,6 @@ var log = function () {
 async function share() {
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: '/usr/bin/google-chrome',
 	    args: ['--no-sandbox']
     });
     const page = await browser.newPage();

@@ -7,7 +7,6 @@ const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 async function bot() {
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: '/usr/bin/google-chrome',
         args: [
         '--use-fake-ui-for-media-stream',
         '--use-fake-device-for-media-stream',

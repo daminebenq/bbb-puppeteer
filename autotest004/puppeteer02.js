@@ -1,4 +1,4 @@
-const puppeteer = require('puppeteer-core');
+const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const basePath = process.argv[3]
 var path = require('path');   
@@ -11,7 +11,6 @@ async function puppeteer2() {
     const browser = await puppeteer.launch({
         headless: false,
         slowMo: 600,
-        executablePath: '/usr/bin/google-chrome',
         args: [ '--use-fake-ui-for-media-stream',
                 '--window-size=1024,768',
                 '--unlimited-storage', 
