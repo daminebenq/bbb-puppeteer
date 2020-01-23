@@ -1,0 +1,5 @@
+events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: ENOENT: no such file or directory, open '/home/imdt/bbb-puppeteer/autotest014/data/23-01-2020_3/receiveMsgDuration.json'

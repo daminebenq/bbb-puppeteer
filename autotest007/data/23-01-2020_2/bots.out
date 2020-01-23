@@ -1,0 +1,21 @@
+{ error: 
+   { Error: Protocol error (Input.dispatchKeyEvent): Target closed.
+    at Promise (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:183:56)
+    at new Promise (<anonymous>)
+    at CDPSession.send (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:182:12)
+    at Keyboard.up (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Input.js:137:24)
+    at Keyboard.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at Keyboard.press (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Input.js:180:16)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+  -- ASYNC --
+    at Keyboard.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:111:15)
+    at Keyboard.type (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Input.js:162:20)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+  -- ASYNC --
+    at Keyboard.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:111:15)
+    at bot (/home/imdt/bbb-puppeteer/autotest007/bots.js:20:33)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+     message: 'Protocol error (Input.dispatchKeyEvent): Target closed.' } } ' at => ' 2020-01-23T17:38:42.125Z

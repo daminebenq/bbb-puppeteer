@@ -38,7 +38,7 @@ async function bot() {
         page.setDefaultTimeout(120000);
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=Bot-${bots}&isModerator=false&action=create`);
 
-        await page.waitFor('[aria-describedby^="modalDismissDescription"]');
+        await page.waitForSelector('[aria-describedby^="modalDismissDescription"]');
         await page.click('[aria-describedby^="modalDismissDescription"]');
         
         for (var i = TIMELIMIT_MILLISECONDS; i >= 0; i--) {

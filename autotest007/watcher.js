@@ -22,13 +22,13 @@ async function watcher() {
         await page.waitForSelector('[aria-describedby^="modalDismissDescription"]', {timeout: 0});
         await page.click('[aria-describedby^="modalDismissDescription"]');
         for (var i = TIMELIMIT_MILLISECONDS; i >= 0; i--) {
-            let totalMsgs = await page.evaluate(async()=> {
-                let x = await document.querySelectorAll('[class="message--Z2n2nXu"]').length
+            let totalMsgs = await page.evaluate(()=> {
+                let x = document.querySelectorAll('[class="message--Z2n2nXu"]').length
                 return x
             });
 
             const date = new Date()
-            const msgs = await page.evaluateHandle(async ()=> {
+            const msgs = await page.evaluateHandle(()=> {
                 let x = require('/imports/api/group-chat-msg/index.js');
                 let y = x.GroupChatMsg.find({},{sort:{timestamp:-1}}).count();
                 return y
@@ -50,7 +50,7 @@ async function watcher() {
                     return;
                 };
             });
-            await page.waitFor(60000)
+            await page.waitFor(5000)
         }
         process.exit(0)
     }   

@@ -40,25 +40,25 @@ async function puppeteer2() {
         }
 
         if (TESTCASE==="1"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='Share webcam']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='Share webcam']")[0].parentElement.click())
             await enableLock();
         } else if (TESTCASE==="2"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='See other viewers webcams']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='See other viewers webcams']")[0].parentElement.click())
             await enableLock();
         } else if (TESTCASE==="3"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='Share microphone']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='Share microphone']")[0].parentElement.click())
             await enableLock();
         } else if (TESTCASE==="4"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='Send Public chat messages']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='Send Public chat messages']")[0].parentElement.click())
             await enableLock();
         } else if (TESTCASE==="5"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='Send Private chat messages']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='Send Private chat messages']")[0].parentElement.click())
             await enableLock();
         } else if (TESTCASE==="6"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='Edit Shared Notes']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='Edit Shared Notes']")[0].parentElement.click())
             await enableLock();
         } else if (TESTCASE==="7"){
-            await page.evaluate(()=>document.querySelectorAll("[class='react-toggle-screenreader-only'][aria-label='See other viewers in the Users list']")[0].parentElement.click())
+            await page.evaluate(()=>document.querySelectorAll("[aria-label='See other viewers in the Users list']")[0].parentElement.click())
             await enableLock();
         } else {
             process.exit(1)

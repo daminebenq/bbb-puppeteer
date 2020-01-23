@@ -17,8 +17,8 @@ async function bot() {
         await page.click('[aria-describedby^="modalDismissDescription"]');
         await page.waitFor(10000)
         for (var i = TIMELIMIT_MILLISECONDS; i >= 0; i--) {
-            await page.keyboard.type(`Message sent !`, {delay: 100});
-            await page.keyboard.press('Enter', {delay: 100});
+            await page.keyboard.type(`Message sent !`);
+            await page.keyboard.press('Enter');
         }
         process.exit(0)
     }   

@@ -23,7 +23,7 @@ async function watch() {
     ));
     try {
         await page.waitFor(3000)
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=WatchExternalSharedVideo&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=WatchExternalSharedVideo&meetingname=a&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000)
         await page.evaluate(()=>document.querySelector('[class="icon--2q1XXw icon-bbb-close"]').parentNode.click());
         await page.waitFor(15000)

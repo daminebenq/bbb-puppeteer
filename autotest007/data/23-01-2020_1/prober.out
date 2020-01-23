@@ -1,0 +1,18 @@
+{ error: 
+   { Error: Protocol error (Runtime.callFunctionOn): Target closed.
+    at Promise (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:183:56)
+    at new Promise (<anonymous>)
+    at CDPSession.send (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:182:12)
+    at ExecutionContext._evaluateInternal (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/ExecutionContext.js:107:44)
+    at ExecutionContext.evaluateHandle (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/ExecutionContext.js:57:17)
+    at ExecutionContext.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at WaitTask.rerun (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/DOMWorld.js:570:65)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+  -- ASYNC --
+    at Frame.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:111:15)
+    at Page.waitForSelector (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Page.js:1125:29)
+    at prober (/home/imdt/bbb-puppeteer/autotest007/prober.js:27:24)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+     message: 'Protocol error (Runtime.callFunctionOn): Target closed.' } }

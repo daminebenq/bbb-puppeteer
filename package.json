@@ -1,26 +1,25 @@
 {
   "name": "bbb-puppeteer",
   "version": "1.0.0",
-  "description": "Testing bbb functionalities using puppeteer in autotests.",
+  "description": "BBB automated tests.",
   "main": "index.js",
   "scripts": {
-    "test": "./autotest001/run.sh"
+    "test": "npm test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daminebenz/bbb-puppeteer.git"
+    "url": "git+https://github.com/daminebenq/bbb-puppeteer.git"
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^3.5.3"
+    "mocha": "^3.5.3",
+    "puppeteer": "^2.0.0"
   },
   "dependencies": {
     "dotenv": "^8.1.0",
     "html2canvas": "^1.0.0-rc.5",
     "moment": "^2.24.0",
     "npm": "^6.13.6",
-    "puppeteer": "^2.0.0",
-    "puppeteer-core": "^2.0.0",
     "stats.js": "^0.17.0"
   },
   "keywords": [
@@ -31,7 +30,7 @@
   "author": "Mohamed Amine Ben Salah <damineone@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/damine222/bbb-puppeteer/issues"
+    "url": "https://github.com/daminebenq/bbb-puppeteer/issues"
   },
-  "homepage": "https://github.com/damine222/bbb-puppeteer#readme"
+  "homepage": "https://github.com/daminebenq/bbb-puppeteer#readme"
 }

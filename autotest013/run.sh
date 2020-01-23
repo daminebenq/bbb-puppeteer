@@ -111,8 +111,6 @@ while [ "$bots" -gt 0 ]; do
 done
 timeout $TIMELIMIT_UPPER node getLocks.js "$URL" "$basePath" $TIMELIMIT_SECONDS &> $basePath/getLocks.out &
 pids+=($!)
-timeout $TIMELIMIT_UPPER node checkLock.js "$URL" "$basePath" $TIMELIMIT_SECONDS "$TESTCASE" &> $basePath/checkLock.out &
-pids+=($!)
 timeout $TIMELIMIT_UPPER node enableLock.js "$URL" "$basePath" $TIMELIMIT_SECONDS "$TESTCASE" &> $basePath/enableLock.out &
 pids+=($!)
 

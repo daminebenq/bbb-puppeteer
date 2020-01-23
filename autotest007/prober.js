@@ -28,14 +28,14 @@ async function prober() {
             await page.click('[aria-describedby^="modalDismissDescription"]');
             
             const performance = await page.evaluate(() => performance.toJSON())
-            const msgs = await page.evaluateHandle(async ()=> {
+            const msgs = await page.evaluateHandle(()=> {
                 let x = require('/imports/api/group-chat-msg/index.js');
                 let y = x.GroupChatMsg.find({},{sort:{timestamp:-1}}).count();
                 return y
             }); 
 
-            let totalMsgs = await page.evaluate(async()=> {
-                let n = await document.querySelectorAll('[class="message--Z2n2nXu"]').length
+            let totalMsgs = await page.evaluate(()=> {
+                let n = document.querySelectorAll('[class="message--Z2n2nXu"]').length
                 return n
             }); 
             
@@ -55,7 +55,7 @@ async function prober() {
                     return;
                 };
             });
-            await page.waitFor(60000)
+            await page.waitFor(5000)
         }
         process.exit(0)
     }   

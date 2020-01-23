@@ -22,7 +22,7 @@ async function share() {
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
     ));
     try {
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=ShareExternalSharedVideo&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=ShareExternalSharedVideo&meetingname=a&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitFor(3000)
         await page.evaluate(()=>document.querySelector('[class="icon--2q1XXw icon-bbb-close"]').parentNode.click());
         await page.waitFor(5000)

@@ -1,0 +1,10 @@
+{ error: Error: Protocol error (Page.navigate): Session closed. Most likely the page has been closed.
+    at CDPSession.send (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:180:29)
+    at navigate (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/FrameManager.js:118:39)
+    at FrameManager.navigateFrame (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/FrameManager.js:95:7)
+    at Frame.goto (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/FrameManager.js:406:37)
+    at Frame.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at Page.goto (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Page.js:675:49)
+    at Page.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at prober (/home/imdt/bbb-puppeteer/autotest007/prober.js:26:24)
+    at <anonymous> }

@@ -1,0 +1,13 @@
+{ error: 
+   { Error: Protocol error (Input.dispatchKeyEvent): Target closed.
+    at Promise (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:183:56)
+    at new Promise (<anonymous>)
+    at CDPSession.send (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Connection.js:182:12)
+    at Keyboard.down (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Input.js:51:24)
+    at Keyboard.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at Keyboard.press (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/Input.js:177:16)
+    at Keyboard.<anonymous> (/home/imdt/bbb-puppeteer/node_modules/puppeteer/lib/helper.js:112:23)
+    at bot (/home/imdt/bbb-puppeteer/autotest007/bots.js:21:33)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:189:7)
+     message: 'Protocol error (Input.dispatchKeyEvent): Target closed.' } } ' at => ' 2020-01-23T17:29:37.091Z
