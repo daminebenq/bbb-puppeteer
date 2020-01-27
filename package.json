@@ -12,13 +12,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-<<<<<<< HEAD
-    "mocha": "^3.5.3",
-    "puppeteer": "^2.0.0"
-=======
     "jasmine": "^3.5.0",
     "mocha": "^3.5.3"
->>>>>>> f1c8ae8e32e3324b3b2cbaed67e7a671f14e9663
   },
   "dependencies": {
     "dotenv": "^8.1.0",
