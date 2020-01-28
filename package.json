@@ -24,11 +24,11 @@
   "dependencies": {
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "google-charts": "^2.0.0",
     "google-spreadsheet": "^2.0.8",
     "html2canvas": "^1.0.0-rc.5",
     "moment": "^2.24.0",
     "npm": "^6.13.6",
+    "promisify": "0.0.3",
     "stats.js": "^0.17.0",
     "puppeteer": "^1.1.1"
   },

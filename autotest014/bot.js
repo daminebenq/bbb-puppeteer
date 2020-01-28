@@ -7,6 +7,11 @@ const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 var path = require('path'); 
 var fs = require("fs");
 const metric = {};
+const GoogleSpreadsheet = require('google-spreadsheet');
+const { promisify } = require('util');
+const spreadsheet = require('../utils/spreadsheet')
+
+const creds = require('../utils/client_secret.json');
 
 var metricsJSON = path.join(__dirname,`./${basePath}/receiveMsgDuration${name}.json`)
 
@@ -58,8 +63,11 @@ async function bot() {
                 millisecondsToAppear: diffTime
             }
             console.log(JSON.stringify(duration))
-            metric['durationObj'] = duration;
-            fs.appendFileSync(metricsJSON, JSON.stringify(metric)+'\n');
+            const metricObject = metric['durationObj'] = duration;
+
+
+            fs.appendFileSync(metricsJSON, JSON.stringify(metricObject)+'\n');
+            
         }
         process.exit(0)
     }
