@@ -3,13 +3,14 @@ cd "$( dirname "${BASH_SOURCE[0]}" )"
 
 pids=()
 
-while getopts u:d:b: option
+while getopts u:d:b:s: option
 do
 case "${option}"
 in
 u) URL=${OPTARG};;
 b) BOTS=${OPTARG};;
 d) TIMELIMIT_MINUTES=${OPTARG};;
+s) SHEETID=${OPTARG};;
 esac
 done
 
@@ -31,9 +32,19 @@ if ! [[ "$TIMELIMIT_MINUTES" =~ ^[0-9]+$ ]] ; then
     exit 1; 
 fi
 
+if [ -z "$SHEETID" ] ; then
+   echo -e "Enter the Google SpreadSheet ID:"
+   read URL
+fi;
+if [ -z "$SHEETID" ] ; then
+    echo "No SHEETID provided";
+    exit 1; 
+fi;
+
 echo URL: $URL;
 echo BOTS: $BOTS;
 echo TIMELIMIT_MINUTES: $TIMELIMIT_MINUTES "minute(s)";
+echo SpreadSheet_Link: "https://docs.google.com/spreadsheets/d/$SHEETID/edit?usp=sharing"
 
 echo "Executing..."
 
@@ -52,7 +63,7 @@ TIMELIMIT_SECONDS=$(($TIMELIMIT_MINUTES * 60))
 TIMELIMIT_UPPER=$(($TIMELIMIT_MINUTES * 60 * 2))
 
 while [ "$bots" -gt 0 ]; do
-    timeout $TIMELIMIT_UPPER node bot.js "$URL" "$basePath" $TIMELIMIT_SECONDS $bots &> $basePath/bots.out &
+    timeout $TIMELIMIT_UPPER node bot.js "$URL" "$basePath" $TIMELIMIT_SECONDS $bots $SHEETID &> $basePath/bots.out &
     pids+=($!)
     bots=$(($bots-1))
 done
@@ -68,6 +79,7 @@ trap killprocs EXIT
 
 wait "${pids[@]}"
 node parser.js $basePath $bots &> $basePath/parser.out &
+curl -s -d /dev/null https://docs.google.com/spreadsheets/d/$SHEETID/export\?format\=xlsx\&id\=$SHEETID > Test.xls &
 exitcode=$?
 trap - EXIT
 

@@ -2,17 +2,12 @@ const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const basePath = process.argv[3]
 const name = process.argv[5]
+const SHEETID = process.argv[6]
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 var path = require('path'); 
 var fs = require("fs");
 const metric = {};
-const GoogleSpreadsheet = require('google-spreadsheet');
-const { promisify } = require('util');
-const spreadsheet = require('../utils/spreadsheet')
-
-const creds = require('../utils/client_secret.json');
-
 var metricsJSON = path.join(__dirname,`./${basePath}/receiveMsgDuration${name}.json`)
 
 async function bot() {
@@ -40,7 +35,7 @@ async function bot() {
         await page.click('[aria-describedby^="modalDismissDescription"]');
         await page.waitFor(10000)
         var loop = 1;
-        for (var i = 1; i <= TIMELIMIT_MILLISECONDS; i++) {
+        for (var i = 1; i <= TIMELIMIT_MILLISECONDS-10000; i++) {
             const textSent = 'B' + name + 'M' + i;
             await page.keyboard.type(textSent);
             await page.keyboard.press('Enter');
@@ -64,10 +59,10 @@ async function bot() {
             }
             console.log(JSON.stringify(duration))
             const metricObject = metric['durationObj'] = duration;
-
-
+            const googleSpreadSheet = require('../utils/spreadsheet')
+            googleSpreadSheet(name,SHEETID,duration);
+            await page.waitFor(1000)
             fs.appendFileSync(metricsJSON, JSON.stringify(metricObject)+'\n');
-            
         }
         process.exit(0)
     }
