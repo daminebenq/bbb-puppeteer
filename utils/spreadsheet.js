@@ -15,7 +15,7 @@ const googleSpreadSheet = async function googleSpreadSheet(name,SHEETID,duration
         // doc.getRows(name,function (err, rows) {
         //     console.log(rows);
         // });
-        doc.addRow(name, {loopnumber: duration.loopNumber, millisecondstoappear: duration.millisecondsToAppear },(err,rows)=>{
+        doc.addRow(name, {loopnumber: duration.loopNumber, millisecondstoappear: duration.millisecondsToAppear },()=>{
             if(err){
                 console.log({err, rows})
             }
