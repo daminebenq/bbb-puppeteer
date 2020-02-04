@@ -1,3 +1,6 @@
 node_modules
 autotest006/video_rgb.y4m
 autotest013/video_rgb.y4m
+utils/client_secret_new.json
+utils/client_secret.json
+utils/credentials.json

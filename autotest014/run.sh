@@ -1,6 +1,6 @@
 #!/bin/bash
 cd "$( dirname "${BASH_SOURCE[0]}" )"
-
+exitcode=$?
 pids=()
 
 while getopts u:d:b:s: option
@@ -34,7 +34,7 @@ fi
 
 if [ -z "$SHEETID" ] ; then
    echo -e "Enter the Google SpreadSheet ID:"
-   read URL
+   read $SHEETID
 fi;
 if [ -z "$SHEETID" ] ; then
     echo "No SHEETID provided";
@@ -75,12 +75,11 @@ function killprocs()
     kill ${pids[@]}
 }
 
-trap killprocs EXIT 
+trap killprocs EXIT
 
 wait "${pids[@]}"
 node parser.js $basePath $bots &> $basePath/parser.out &
 curl -s -d /dev/null https://docs.google.com/spreadsheets/d/$SHEETID/export\?format\=xlsx\&id\=$SHEETID > Test.xls &
-exitcode=$?
 trap - EXIT
 
 if [ $exitcode -eq 0 ]

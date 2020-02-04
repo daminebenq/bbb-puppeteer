@@ -29,7 +29,7 @@ async function puppeteer1() {
 
         metrics['metricObj'] = metric;
         metrics['performanceObj'] = performance;
-        
+
         fs.appendFileSync(metricsJSON, JSON.stringify(metrics, null, 4), 'utf-8', (err) => {
             if (err) {
                 console.error(err);

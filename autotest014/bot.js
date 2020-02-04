@@ -1,14 +1,14 @@
 const puppeteer = require('puppeteer');
 const URL = process.argv[2]
 const basePath = process.argv[3]
-const name = process.argv[5]
+const botsNb = process.argv[5]
 const SHEETID = process.argv[6]
 const TIMELIMIT_SECONDS = parseInt(process.argv[4])
 const TIMELIMIT_MILLISECONDS = TIMELIMIT_SECONDS * 1000;
 var path = require('path'); 
 var fs = require("fs");
 const metric = {};
-var metricsJSON = path.join(__dirname,`./${basePath}/receiveMsgDuration${name}.json`)
+var metricsJSON = path.join(__dirname,`./${basePath}/receiveMsgDuration${botsNb}.json`)
 
 async function bot() {
     const browser = await puppeteer.launch({
@@ -30,13 +30,13 @@ async function bot() {
     log(['Starting Time'])
     try{
         page.setDefaultTimeout(120000);
-        await page.goto(`${URL}/demo/demoHTML5.jsp?username=${name}&meetingname=puppeteer&isModerator=false&action=create`);
+        await page.goto(`${URL}/demo/demoHTML5.jsp?username=${botsNb}&meetingname=puppeteer&isModerator=false&action=create`);
         await page.waitForSelector('[aria-describedby^="modalDismissDescription"]', { timeout: 0 });
         await page.click('[aria-describedby^="modalDismissDescription"]');
         await page.waitFor(10000)
         var loop = 1;
         for (var i = 1; i <= TIMELIMIT_MILLISECONDS-10000; i++) {
-            const textSent = 'B' + name + 'M' + i;
+            const textSent = 'B' + botsNb + 'M' + i;
             await page.keyboard.type(textSent);
             await page.keyboard.press('Enter');
 
@@ -60,7 +60,7 @@ async function bot() {
             console.log(JSON.stringify(duration))
             const metricObject = metric['durationObj'] = duration;
             const googleSpreadSheet = require('../utils/spreadsheet')
-            googleSpreadSheet(name,SHEETID,duration);
+            googleSpreadSheet(botsNb,SHEETID,duration);
             await page.waitFor(1000)
             fs.appendFileSync(metricsJSON, JSON.stringify(metricObject)+'\n');
         }

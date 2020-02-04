@@ -13,24 +13,28 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chart.js": "^2.9.3",
+    "googleapis": "^32.0.0",
     "jasmine": "^3.5.0",
     "mocha": "^3.5.3",
-    "source-map-support": "^0.5.3",
-    "chart.js": "^2.9.3"
+    "source-map-support": "^0.5.3"
   },
   "peerDependencies": {
     "chart.js": "^2.7.2"
   },
   "dependencies": {
     "dotenv": "^8.1.0",
+    "ejs": "^3.0.1",
     "express": "^4.17.1",
     "google-spreadsheet": "^2.0.8",
+    "html": "^1.0.0",
     "html2canvas": "^1.0.0-rc.5",
+    "jade": "^1.11.0",
     "moment": "^2.24.0",
     "npm": "^6.13.6",
     "promisify": "0.0.3",
-    "stats.js": "^0.17.0",
-    "puppeteer": "^1.1.1"
+    "puppeteer": "^1.1.1",
+    "stats.js": "^0.17.0"
   },
   "keywords": [
     "bigbluebutton",
