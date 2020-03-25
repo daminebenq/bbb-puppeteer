@@ -21,16 +21,16 @@ async function puppeteer2() {
         ...await Promise.all(msg.args().map(arg => arg.jsonValue()))
     ));
     log(['Starting Time'])
-    
+
     try {
         await page.goto(`${URL}/demo/demoHTML5.jsp?username=EnableLocks&isModerator=true&action=create`, { waitUntil : ['load', 'domcontentloaded']});
         await page.waitForSelector('[aria-describedby^="modalDismissDescription"]');
-        await page.click('[aria-describedby^="modalDismissDescription"]');        
+        await page.click('[aria-describedby^="modalDismissDescription"]');
         await page.evaluate(async ()=>await document.querySelectorAll('[class="icon--2q1XXw icon-bbb-settings"]')[0].click());
         await page.waitFor(3000)
         await page.evaluate(async ()=>await document.querySelector('i[class~="icon-bbb-lock"]').parentNode.click())
         await page.waitFor(3000)
-        
+
         async function enableLock(){
             await page.waitFor(3000)
             await page.evaluate(
@@ -63,7 +63,6 @@ async function puppeteer2() {
         } else {
             process.exit(1)
         }
-
 
         await page.waitFor(TIMELIMIT_MILLISECONDS-21000)
         log(['End Time'])

@@ -16,11 +16,6 @@ async function bot() {
         await page.waitForSelector('[aria-describedby^="modalDismissDescription"]', { timeout: 0 });
         await page.click('[aria-describedby^="modalDismissDescription"]');
         await page.waitFor(10000)
-        for (var i = TIMELIMIT_MILLISECONDS; i >= 0; i--) {
-            await page.keyboard.type(`Message sent !`);
-            await page.keyboard.press('Enter');
-        }
-        process.exit(0)
     }   
     catch(error){
         const time = new Date()

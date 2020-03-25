@@ -18,7 +18,7 @@ if [ -z "$URL" ] ; then
 fi;
 if [ -z "$URL" ] ; then
     echo "No URL provided";
-    exit 1; 
+    exit 1;
 fi;
 
 if  [ -z "$TIMELIMIT_MINUTES" ] ; then
@@ -27,7 +27,7 @@ if  [ -z "$TIMELIMIT_MINUTES" ] ; then
 fi;
 if ! [[ "$TIMELIMIT_MINUTES" =~ ^[0-9]+$ ]] ; then
     echo "TIMELIMIT_MINUTES is not valid !"
-    exit 1; 
+    exit 1;
 fi
 
 echo URL: $URL;

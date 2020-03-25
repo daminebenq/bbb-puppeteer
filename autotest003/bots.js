@@ -6,7 +6,7 @@ const puppeteer = require('puppeteer');
         headless: true,
         args: [ '--use-fake-ui-for-media-stream',
                 '--window-size=800,600',
-                '--unlimited-storage', 
+                '--unlimited-storage',
                 '--full-memory-crash-report'
         ]
     });

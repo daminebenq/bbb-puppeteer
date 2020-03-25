@@ -13,7 +13,7 @@ async function puppeteer2() {
         slowMo: 600,
         args: [ '--use-fake-ui-for-media-stream',
                 '--window-size=1024,768',
-                '--unlimited-storage', 
+                '--unlimited-storage',
                 '--full-memory-crash-report',
                 '--disable-dev-shm-usage'
         ]
