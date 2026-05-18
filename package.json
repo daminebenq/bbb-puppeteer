@@ -16,7 +16,7 @@
     "chart.js": "^2.9.3",
     "googleapis": "^171.4.0",
     "jasmine": "^3.5.0",
-    "mocha": "^3.5.3",
+    "mocha": "^11.7.5",
     "source-map-support": "^0.5.3"
   },
   "peerDependencies": {
