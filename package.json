@@ -31,7 +31,7 @@
     "html2canvas": "^1.0.0-rc.5",
     "jade": "^1.11.0",
     "moment": "^2.24.0",
-    "npm": "^11.14.1",
+    "npm": "^11.17.0",
     "promisify": "0.0.3",
     "puppeteer": "^1.1.1",
     "stats.js": "^0.17.0"
